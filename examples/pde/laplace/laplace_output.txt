@@ -1,0 +1,20 @@
+RBF info: 
+ name           : TPS
+ beta factor    : 4
+ degree pol     : 3
+ min degree pol : 3
+Pol info: 
+ data dimension : 2
+ order          : 3
+ base elements  : 6
+
+total nodes    N  = 961
+interior nodes ni = 841
+boundary nodes nf = 120
+
+condition number = 4.065098e+09
+
+This equation was previously solved in the book of Trefethen(2000) and Fasshauer(pp416)
+ the value reported in Fasshauer book was: u(0,0) = 0.0495940466
+ we determine the numerical approximation: u(0,0) = 0.0495639958
+

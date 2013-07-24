@@ -1,0 +1,259 @@
+
+
+
+Version 0.1.2 (14-09-2009)
+-------------
+
+--Modified the pol_polinomio.hpp, contains the same functions but with a better
+  programming style. The performance it's the same.
+  
+--Added more warnings and errors in pol_polinomio.hpp
+  
+--Restored a commented function in poisson_all.cpp
+
+--In examples/pde and examples/interpolation all the test examples 
+  contain a similar Makefile
+
+Version 0.1.1 (7-09-2009)
+-------------
+
+--Added  30 more functions for rbf derivatives in 3D.
+
+*Bug fixed
+   +Fix the bugs in our previous headers functions for 3d code.
+   +in pol_polinomio.hpp added the memory release in make function.
+   +in pol_bitvector.hpp added more argin check and remove an possible bug.
+
+--Improve the web page with more explanations.
+
+--We started the documentation with Doxys.
+
+--We are looking and C++ coding standard.
+
+--Redesign the functions and names:
+
+      fillMatrix  ==> become ==> fill_matrix
+      fillGramm   ==> become ==> fill_gram
+      interpola   ==> become ==> interpolate
+
+--Revised the examples/pde and remove unnecessary code/spaces
+
+--Added more validations in the functions 'interpolate'.
+
+--Translated a few warnings in spanish for english in pol_base.hpp
+
+Version 0.1.0 (31-08-2009)
+-------------
+
+--Added more web description and graphics in the web page 
+  of Radial++
+
+--Added the parallel  matrix-vector multiplication using openmp
+  We only test with two-processors with shared memory and the
+  performance was good. The matrix-vector multiplication in
+  parallel is performed in the overloadded operator *.
+  
+  See the example in the folder examples/omp
+  
+  Clearly you need a compiler to support openmp, I only test with
+  GCC 4.4. We hope to test with more cores.
+
+--Modified public to protected the data in each class RBF
+
+--Removed tabs in all the files
+
+--Removed the warnings in poisson_all.cpp
+
+Version 0.0.9 (24-08-2009)
+-------------
+
+--First release of the web page of Radial++
+
+--Added the multiquadric modified of the form
+
+       MQM   phi(x) = (1 + r^2 * c^2)^(beta/2)   1,3,5,7,..
+
+   where   r = || x ||_2  Euclidean distance and c = shape
+   parameter. 
+
+   Note: only work for scattered data interpolation, further
+         work is to provide the derivatives of MQM.
+
+--Updated the stream output erros in rbf to stderr.
+
+*Bug fixed in advection.cpp  , sorry.
+
+
+Version 0.0.8 (19-08-2009)
+-------------
+
+--Added more validations in nd/interpolate.cpp
+
+*Bug fixed
+
+   In the generalized multiquadric 
+        
+        MQ         phi(x) = (r^2+c^2)^(beta/2)   1,3,5,7,..
+        
+   where   r = || x ||_2  Euclidean distance and c = shape
+   parameter. We previously has beed defined that the minumun
+   order of the polyomial must be m>=beta. However, this is a
+   mistake, the true value for m must be: m>= ceil(beta/2).
+   
+   See theorem 8.15 page 109 in book Scattered Data Approximation
+     
+
+Version 0.0.7 (18-08-2009)
+-------------
+
+--Add the function
+
+        Vector <--  linspace( left, rigth, n )
+        
+           Generate linearly spaced vectors
+           
+        similar to Octave or Matlab.
+        
+--Add the function
+  
+        Vector <--  logspace( left, rigth, n )
+        
+           Generate logarithmically spaced vectors
+           
+        similar to Octave or Matlab.      
+        
+--Update the files
+
+       examples/interpolation/eje-1.cpp 
+       examples/interpolation/eje-2.cpp 
+
+  with the use of linspace
+  
+*Bug fixed
+  + in the example  interpolation/nd 
+
+      
+Version 0.0.6 (17-08-2009)
+-------------
+
+--In the file README, we provide the radial basis functions used
+  in Radial++.
+
+--Provide ascii files with the running outputs for each example
+
+--Remove some unusual code in several examples
+
+--Added the program  examples/nterpolation/nd/interpolate.cpp
+  with this program, we can interpolate scattered data in any dimension
+  with any of the radial basis functions provided in this library.
+  Also, all the parameters of the rbf can be configurated in the input
+  file from the configuration. 
+
+Version 0.0.5 (16-08-2009)
+-------------
+
+--Add more explanations in several examples in the folder pde
+
+--Add the struct for time measurements taken from FLENS
+  timer  time;  time.tic();  time.toc();
+  
+--Improve by more than 100% the efficience of the template functions
+  
+    void fillGramm(RBF rbf, T c, Pol &pol, Vec &x, Mat &A)
+  
+    void fillGramm(RBF rbf, T c, Pol &pol, Vec &x, Vec &y,  Mat &A)
+
+  The above functions, are using to build the Gramm-Matrix for
+  one and two dimensional scattered data.
+  
+  With this modifications, the performance achieved is similar to
+  the obtained by a hand coded C or C++ functions to build the
+  Gramm-Matrix. !!It's true, the perfomance is similar. Clearly,
+  we need to use at least the version 4.4 of c++ GNU and the 
+  flag -O3. The test was based on multiquadric kernel for 2D without
+  polynomial.
+  
+--Improve the template functions fillMatrix, the performance obtained
+  by this new implementation is similar to the achieved by a hand code
+  implementations.
+
+--Improve by 53% the efficience of the template function
+        template <typename T> 
+        Vector<T> LU<T>::solve(Matrix<T> &B, Vector<T>  &b)
+  the test was done with -O3 flag. In my laptop MAC, the best performance was
+  obtained with the interface to BLAS and LAPACK. With the above impro
+  vement, the performance obtained is approximately 30% less than the
+  obtained with BLAS and LAPACK interface. 
+
+
+
+Version 0.0.4 (13-08-2009)
+-------------
+
+--Added the option in radial.h
+
+    #define RADIAL_WITH_C_CODE 
+
+    With this option, we improve the performance by more than
+    200% in several examples. In particular, we provided C coding
+    of the overloaded operators. This is useful when a low compiler
+    optimizations are performed and we are not using the interface
+    to BLAS and LAPACK ( see Seldon )
+
+--Note: Clearly we are using the naive code for A+B, A*x, etc.
+        Further work to avoid this drawback are undertaken by the
+        authors of Radial++ and Seldon.
+
+Version 0.0.3 (13-08-2009)
+-------------
+
+--Add more text description (in english) in the interpolation examples
+--Reduce the number of parameters in the function fillGramm
+--Add rm dat* and *dat in several Makefiles in the option make clean
+
+*Bugs fixed
+   + correct the Makefile for pde/advection
+
+Version 0.0.2 (12-08-2009)
+-------------
+
+--Added more description at each example
+--In Makefiles, provide more options
+
+*Bugs fixed
+  +in  grid.hpp in the function make_data_circle
+   we correct the erroneous radius value.
+   Now the examples, pde/circle its ok.
+
+  +in pde/burger  the problem was in the pdot function
+   Now, it is ok the result in Burger
+    
+
+Version 0.0.1 (12-08-2009)
+-------------
+
+-Added a commun header with the license at each file
+
+-Include in the Makefiles of advection and allen-cahn
+ the option of compilation with BLAS and LAPACK, see
+ the library Seldon
+
+
+*Unfixed bugs:
+  + the example pde/circle.cpp contain duplicate nodes
+    in the Gramm-matrix
+  + the example  pde/burger does not produce the correct
+    result ???
+
+*Bugs fixed:
+  + Remove noise data in pol_polinomio.hpp 
+  + Fix the compilation error in advection.cpp
+  + Fix the compilation error in burger.cpp
+
+
+Version 0.0 (11-08-2009)
+-----------
+The first release
+
+
+The development started in 2008 with the polynomial template.

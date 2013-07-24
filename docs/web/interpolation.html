@@ -1,0 +1,95 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head>
+	<meta http-equiv="content-type" content="text/html; charset=utf-8" />
+	<meta name="description" content="Your description goes here" />
+	<meta name="keywords" content="2d interpolation, 3d interpolation, scattered data" />
+	<meta name="author" content="Jose Antonio Munoz Gomez" />
+	<link rel="stylesheet" type="text/css" href="andreas08.css" title="andreas08" media="screen,projection" />
+	<title>Radial++</title>
+</head>
+
+<body>
+<div id="container" >
+	<div id="header">
+		<h1>Radial++</h1>
+	</div>
+
+	<div id="navigation">
+		<ul>
+			<li><a href="index.html">Introduction</a></li>
+			<li><a href="download.html">Download</a></li>
+			<li><a href="documentation.html">Documentation</a></li>
+			<li class="selected"><a href="interpolation.html">Interpolation</a></li>
+			<li><a href="pdes.html">PDEs</a></li>
+			<li><a href="future.html">Future</a></li>
+			<li><a href="r2s.html">R2S</a></li>
+		</ul>
+     </div>
+
+
+<div id="content" style="text-align: justify">
+          
+<p>
+  Before download Radial++, please see the folder examples/interpolation, this
+  carpet contain several examples for the interpolation of scattered data
+  in several dimension by means of the generalized radial basis functions.
+  We only interpolate explicit surface.
+</p>  
+
+<p>
+  It is convenient to say that we use a direct solver to approximate the
+  solution of the linear system of equations (Gramm-matrix).
+  It is well known that the computational complexity is O(n^3), so, we
+  have restrictions in the size: Radial++ can interpolate medium or moderate number of nodes.  
+  However, we have been tested with 5000 centers and interpolated 50,000
+  nodes in a moderate laptop and the total time spend a few minutes.
+</p>
+  
+<p>
+  In particular, we provide the following folders with several examples:
+</p>  
+  <ul>
+    <li> interpolation/1d </li>
+    <li> interpolation/2d </li>
+    <li> interpolation/3d </li>
+    <li> interpolation/nd  </li>
+  </ul>
+
+<p>
+  The last folder <nd>, contains a program called interpolate.cpp, this
+  is the major contribution of Radial++ to interpolate scattered data.
+  Based on a friendly configuration file, we can interpolate scattered data
+  in any dimension, choosing the kernel, shape parameter, exponent in the
+  RBF and selecting freely the order of the polynomial associated to the
+  RBF. Also, all the data inputs and outputs are provided in ASCII format
+  and can be used to plot directly to GNUPlot or converting to a propietaty
+  format.
+</p>
+<p>         
+Inside of each folder you only need to write in the shell: 
+make help 
+and follow  given instructions. 
+
+All the examples contain ASCII outputs with the expected running outputs. 
+</p>  
+  
+<p>
+ Currently, we are working to provide  html outputs for each example.
+</p>  
+  
+</div>
+
+    <div id="subcontent">
+    <div class="small box">
+    	 <img src="imgs/int/2dinterpolation.png" height="110" width="152"/>
+    </div>
+   	</div>
+
+	<div id="footer">
+		<p>&copy; 2009 J. Antonio Mu&ntilde;oz-G&oacute;mez</p>
+	</div>
+
+</div>
+</body>
+</html>

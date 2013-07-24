@@ -1,0 +1,74 @@
+
+In this example, we demostrate the power of Radial++, in particular
+we solve the same Poisson problem  with differents kernels.
+
+-----------------------------------
+RBF info: 
+ name           : TPS
+ beta factor    : 4
+ degree pol     : 3
+ min degree pol : 3
+Pol info: 
+ data dimension : 2
+ order          : 3
+ base elements  : 6
+
+condition number = 5.868092e+08
+
+The maximum error: e_max = 3.823941e-03
+-----------------------------------
+RBF info: 
+ name           : POT
+ beta factor    : 5
+ degree pol     : 3
+ min degree pol : 3
+Pol info: 
+ data dimension : 2
+ order          : 3
+ base elements  : 6
+
+condition number = 4.132260e+10
+
+The maximum error: e_max = 1.884631e-03
+-----------------------------------
+RBF info: 
+ name           : IMQ
+ beta factor    : 1
+ degree pol     : 0
+ min degree pol : 0
+Pol info: 
+ data dimension : 2
+ order          : 0
+ base elements  : 0
+
+condition number = 3.599500e+19
+
+The maximum error: e_max = 6.946518e-06
+-----------------------------------
+RBF info: 
+ name           : MQ
+ beta factor    : 1
+ degree pol     : 1
+ min degree pol : 1
+Pol info: 
+ data dimension : 2
+ order          : 1
+ base elements  : 1
+
+condition number = 2.011072e+19
+
+The maximum error: e_max = 5.206828e-06
+-----------------------------------
+RBF info: 
+ name           : GAU
+ beta factor    : 1
+ degree pol     : 0
+ min degree pol : 0
+Pol info: 
+ data dimension : 2
+ order          : 0
+ base elements  : 0
+
+condition number = 3.838331e+19
+
+The maximum error: e_max = 6.117859e-06

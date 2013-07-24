@@ -1,0 +1,16 @@
+RBF info: 
+ name           : MQ
+ beta factor    : 1
+ degree pol     : 1
+ min degree pol : 1
+Pol info: 
+ data dimension : 1
+ order          : 1
+ base elements  : 1
+
+condition number = 1.442868e+06
+Testing 1-d interpolation
+ f(x) = sin(x)
+we build the interpolation with n-centers = 20
+determine the error in 2*n centers = 40
+e_max = 0.00160471

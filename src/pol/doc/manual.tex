@@ -1,0 +1,436 @@
+\documentclass[a4paper,11pt]{article}
+\usepackage{color} 
+\renewcommand{\baselinestretch}{1.2}% Comando para incrementar el espacio % 1.0
+                                    % entre las lineas: simple 1 (default)
+                                    %                   renglon y medio 1.5
+                                    %                   doble espacio 2
+
+\setlength{\parskip}{3pt}           % distancia entre paragrafos
+
+ % Own new commnads
+\newcommand \RR{\hbox{I\kern -.2em \hbox {R}}}
+\newcommand \al{^}
+
+\newcommand{\Rset}{{\mathbb R}}  % Set of real numbers
+\newcommand{\Cset}{{\mathbb C}}  % Set of complex numbers
+\newcommand{\Nset}{{\mathbb N}}  % Set of complex numbers
+\newcommand{\Pset}{{\mathbb P}}  % Set of complex numbers
+\definecolor{RoyalBlue}{rgb}{0.25,0.41,0.88}
+
+
+
+\textwidth 15.5cm
+\topmargin -2cm
+%\parindent 0cm  %Espacio en la primera letra al inicio de un parrafo
+\textheight 24cm
+\parskip 1mm
+
+\begin{document}
+
+\title{Manual para la Clase Polinomio}
+
+\date{}
+\maketitle
+
+\noindent
+\textbf{Descripci\'on}
+
+El objetivo de la plantilla de la clase \textit{Polinomio} -codificada en C++- es la creaci\'on, 
+evaluaci\'on y derivaci\'on de polinomios ($p \in P_{m-1}(\RR^d)$) requeridos en 
+la interpolaci\'on con funciones de base radial y en la soluci\'on num\'erica de ecuaciones en 
+derivadas parciales. Al ser una plantilla (template) podemos instanciar el objeto Polinomio
+con distintos tipos de datos, por ejemplo: float, double, o alg\'un tipo de dato definido por
+el usuario. Para evitar conflictos con los nombres de las clases, definimos el espacio de
+nombre \textit{pol}.
+
+Las caracter\'istica principales de la clase \textit{Polinomio} son:
+\begin{itemize}
+  \item Datos en $\RR^d$. !!Funciona para datos en cualquier dimensi\'on, esta es la diferencia
+        principal con las versiones anteriores.
+  \item Crea polinomios de cualquier grado.
+  \item C\'alculo de las derivadas de cualquier orden y sobre cualquier variable.
+  \item Operaciones binarias entre polinomios: suma, resta y multiplicaci\'on por un escalar.
+\end{itemize}
+
+\vspace{3mm}
+\noindent
+\textbf{C\'odigo Fuente}: polinomio\_v\_1.9.cpp
+
+\noindent
+\textbf{Desarrollado}: Jos\'e Antonio Mu{\~n}oz G\'omez
+
+\noindent
+\textbf{Sugerencias}: jose.munoz@cucsur.udg.mx
+
+\vspace{3mm}
+\footnotesize{
+El presente manual forma parte del proyecto "M\'etodos de Funciones Radiales para la Soluci\'on
+de Ecuaciones en Derivadas Parciales" www.dci.dgsca.unam.mx/pderbf, coordinado por  P\'edro
+Gonz\'alez-Casanova.}
+
+
+\newpage
+\vspace{3mm}
+\noindent
+\begin{center}
+\begin{Large}
+Funciones de la Clase Polinomio
+\end{Large}
+\end{center}
+%-----------------------------------------
+En la carpeta de \textit{examples} se muestran 22 ejemplos documentos de como emplear
+la clase Polinomio. La declaraci\'on de un polinomio se realiza mediante la instrucci\'on
+\begin{center}
+ Polinomio$<$T$>$ p;
+\end{center}
+donde T es un tipo de dato en C o en C++, por ejemplo T puede ser un float o double.
+Se recomienda utilizar
+\begin{center}
+ Polinomio$<$double$>$ p;
+\end{center}
+En lo subsecuente se emplear\'a a T para indicar el tipo de dato empleado.
+
+%-----------------------------------------
+\vspace{4mm}
+\noindent
+{\textcolor{RoyalBlue}{ \textbf{make(d, m)} }
+
+\noindent
+Descripci\'on: crea internamente un polinomio $p \in P^d_{m-1}$, el polinomio internamete se almacena como
+$p=\{p_1, p_2, \ldots, p_M\}$. Posteriormente se puede evaluar u obtener las derivadas de $p$.
+
+\noindent
+Par\'ametros de Entrada
+
+\begin{tabular}{ll}
+    d  &  ENTERO que especifica la dimensi\'on del espacio. \\
+
+   m   &  ENTERO que especifica el orden $m$ del polinomio.
+\end{tabular}
+
+
+%-----------------------------------------
+\vspace{7mm}
+\noindent
+{\textcolor{RoyalBlue}{ \textbf{deriva(parcial, orden)} }
+
+
+\noindent
+ Descripci\'on: deriva el polinomio $p(x)$ creado con \textit{make}.
+
+\noindent
+Par\'ametros de Entrada
+
+
+\begin{tabular}{ll}
+ parcial  &  ENTERO vector con los datos, longitud $d \cdot n$. \\
+          &  STRING vector con los datos, longitud $d \cdot n$. \\
+  orden   &  ENTERO que especifica el orden de derivaci\'on.
+\end{tabular}
+
+
+\vspace{5mm}
+\noindent
+Ejemplos:
+
+Para obtener la primera derivada del polinomio con respecto de la variable $x$ para datos en una dimensi\'on se puede realizar:
+
+\begin{center}
+deriva("x",1) \hspace{1cm} o  \hspace{1cm} deriva(1,1)
+\end{center}
+
+Para obtener la segunda derivada del polinomio con respecto de la variable $y$ para datos en dos dimensiones $\bar{x} = (x,y)$
+se puede realizar:
+
+\begin{center}
+deriva("y",1) \hspace{1cm} o  \hspace{1cm} deriva(2,1)
+\end{center}
+
+Para obtener la primera derivada del polinomio con respecto de la variables $z$ para datos en tres dimensiones $\bar{x} = (x,y,z)$
+se puede realizar:
+
+\begin{center}
+deriva("z",1) \hspace{1cm} o \hspace{1cm}  deriva(3,1)
+\end{center}
+
+Para datos definidos en $d>3$, se debe utilizar como primer argumento un entero.
+
+
+%-----------------------------------------
+\vspace{7mm}
+\noindent
+{\textcolor{RoyalBlue}{ \textbf{eval(x,  d,  px, dim-px)} }
+
+\noindent
+Descripci\'on: eval\'ua cada elemento de la base del polinomio creado en un punto $x \in \RR^d$.
+Recordando que $p=\{p_1, p_2, \ldots, p_M\}$, entonces la evaluaci\'on de $x$ en $p$ corresponde a
+$p(x)=\{p_1(x), p_2(x), \ldots, p_M(x)\}$.
+Si el polinomio fue previamente derivado entonces evalua la derivada del polinomio en dicho punto. 
+
+\noindent
+Par\'ametros de Entrada
+
+\begin{tabular}{ll}
+    x   &  T* vector con un elemento $x \in \RR^d$, $x$ tiene longitud $d$. \\
+    d   &  ENTERO que especifica la dimensi\'on del espacio. \\
+dim-px  &  ENTERO que especifica el n\'umero de elementos del polinomio. 
+\end{tabular}
+
+\noindent
+Par\'ametros de Salida
+
+\begin{tabular}{ll}
+   px \hspace{7mm}  &  T* vector de longitud dim-px.
+\end{tabular}
+
+
+\vspace{5mm}
+\noindent
+La longitud de px depende de los par\'ametros $m$, $d$ utilizados en la funci\'on \textit{make}.
+Para conocer el valor de dim-px se requiere utilizar la funci\'on \textit{get\_M}, la cual
+regresa el n\'umero de elementos que tiene el polinomio creado.
+
+%-----------------------------------------
+\vspace{7mm}
+\noindent
+{\textcolor{RoyalBlue}{ \textbf{ P $\leftarrow$ build(x, n, d)  } }
+
+\noindent
+Descripci\'on: crea una matriz $P$ de dimensiones $n \times M$ la cual contiene por rengl\'on
+la evaluaci\'on del polinomio $p$ en un punto $x$ (ver funci\'on \textit{eval}).
+Si el polinomio fue previamente derivado entonces la matriz $P$ contiene la evaluaci\'on del
+polinomio derivado evaluado en dichos puntos.
+
+\noindent
+Par\'ametros de Entrada
+
+\begin{tabular}{ll}
+    x  &  DOUBLE vector con los datos, longitud $d*n$. \\
+    n  &  ENTERO que especifica el n\'umero de elementos del vecto $x$. \\
+    d  &  ENTERO que especifica la dimensi\'on del espacio.
+\end{tabular}
+
+
+\noindent
+Par\'ametros de Salida
+
+\begin{tabular}{ll}
+    P  &  T** matriz de dimensiones $n \times M$.
+\end{tabular}
+
+\noindent
+La funci\'on \textit{build} es requerida para construir el polinomio en la matriz de Gramm, as\'i como
+la submatriz -corresponde al polinomio derivado- requerida en el esquema de colocaci\'on asim\'etrico de E. J. Kansa.
+
+
+%-----------------------------------------
+\vspace{7mm}
+\noindent
+{\textcolor{RoyalBlue}{ \textbf{ build(x, n, d, P, k, m, op)  } }
+	
+\noindent
+Descripci\'on: evalua el polinomio $p$ en los puntos $x$, el resultado lo
+almacena en un vector de datos $P$.
+Si el polinomio fue previamente derivado entonces  $P$ contendra la evaluaci\'on del
+polinomio derivado evaluado en dichos puntos.
+En esta funci\'on no se reserva la memoria para $P$, esta debe ser previamente creada. 
+
+\noindent
+Par\'ametros de Entrada
+
+\begin{tabular}{ll}
+    x  &  T* vector con los datos, longitud $d \cdot n$. \\
+    n  &  ENTERO que especifica el n\'umero de elementos del vecto $x$. \\
+    d  &  ENTERO que especifica la dimensi\'on del espacio. \\
+    k  &  ENTERO que especifica el n\'umero de renglones de $P$, k debe coincidir con n.\\ 
+    m  &  ENTERO que especifica el n\'umero de columnas de $P$, m debe coincidir  con dim-px.  \\
+    op &  ENTERO si op=0 se almacenan los datos en orden ROW-MAJOR, si op=1  \\    
+       &   se almacenan los datos en orden COL-MAJOR como en Fortran. Si no se \\
+       &  especifica el par\'ametro op, este vale 0.
+\end{tabular}
+
+\noindent
+Par\'ametros de Salida
+
+\begin{tabular}{ll}
+    P  &  T*  vector de longitud $n \cdot m$. Requiere que previamente se reserve la memoria para P.
+\end{tabular}
+
+\noindent
+La funci\'on \textit{build} es requerida para construir el polinomio en la matriz de Gramm, as\'i como
+la submatriz -corresponde al polinomio derivado- requerida en el esquema de colocaci\'on asim\'etrico de E. J. Kansa.
+
+
+%----------------------------------------- 
+\vspace{7mm}
+\noindent
+{\textcolor{RoyalBlue}{ \textbf{ Matrix$<$T$>$ $\leftarrow$ build$\_$tnt(x, n, d)  } }
+
+\noindent
+Descripci\'on: cuando se compila con la libreria Template Numerical ToolKit, ver README,
+se crea una matriz $P$ de dimensiones $n \times M$ la cual contiene por rengl\'on
+la evaluaci\'on del polinomio $p$ en un punto $x$ (ver funci\'on \textit{eval}).
+Si el polinomio fue previamente derivado entonces la matriz $P$ contiene la evaluaci\'on del
+polinomio derivado evaluado en dichos puntos. Los par\'ametros de entrada son similares
+a la primera funci\'on \textit{build}.
+
+%-----------------------------------------
+\vspace{7mm}
+\noindent
+{\textcolor{RoyalBlue}{ \textbf{+, -} }
+
+\noindent
+Descripci\'on: sean $p,q  \in P_{m-1}(\RR^d)$,  la clase Polinomio tiene m\'etodos p\'ublicos
+para poder realizar las siguientes tres operaciones:
+
+\[
+  p + q, \hspace{7mm}
+  p - q, \hspace{7mm}
+ \alpha \cdot p
+\]
+con $\alpha \in \RR$. Las tres operaciones anteriores son requeridas cuando trabajamos con ecuaciones
+en derivadas parciales.
+
+
+%-----------------------------------------
+\vspace{7mm}
+\noindent
+{\textcolor{RoyalBlue}{\textbf{ int get$\_$m()  } }
+
+\noindent
+Descripci\'on: obtiene el grado del polinomio $m$ utilizada
+en la construcci\'on del polinomio con la funci\'on \textit{make}.
+
+%-----------------------------------------
+\vspace{7mm}
+\noindent
+{\textcolor{RoyalBlue}{\textbf{ int get$\_$d()  } }
+
+\noindent
+Descripci\'on: obtiene la dimensi\'on del espacio $d$ utilizada
+en la construcci\'on del polinomio con la funci\'on \textit{make}.
+
+%-----------------------------------------
+\vspace{7mm}
+\noindent
+{\textcolor{RoyalBlue}{\textbf{ int get$\_$M()  } }
+
+\noindent
+Descripci\'on: obtiene el n\'umero de elementos $M$ que conforman
+la base del polinomio: $p(x)=\{p_1(x), p_2(x), \ldots, p_M(x)\}$.
+El valor de $M$ se determina internamente en la funci\'on \textit{make} y
+es calculado como:
+\[
+M=
+\left(
+\begin{array}
+[c]{c}%
+d+m-1\\
+m-1
+\end{array}
+\right)
+\]
+
+
+
+%-----------------------------------------
+\vspace{7mm}
+\noindent
+{\textcolor{RoyalBlue}{ \textbf{string version()  } }
+
+\noindent
+Descripci\'on: obtiene la versi\'on de la clase Polinomio.
+
+%-----------------------------------------
+
+\newpage
+\vspace{3mm}
+\noindent
+\begin{center}
+\begin{Large}
+Ejemplos
+\end{Large}
+\end{center}
+
+El siguiente ejemplo en 1d contenido en /examples/1d/eje$\_$9.cpp muestra las distintas 
+formas de construir la matriz P. Para compilar el programa s\'olo realize: c++ $\mbox{eje}\_\mbox{9.cpp}$,
+el archivo compilado ser\'a a.out, el cual arroja de salida:
+\begin{verbatim}
+Calculo de la matriz P con   p(x) = 1 + x + x*x
+
+P = 
+    1.0 1.1 1.2 
+    1.0 1.2 1.4 
+    1.0 1.3 1.7 
+
+P = 
+    1.0  1.1  1.2  1.0  1.2  1.4  1.0  1.3  1.7  
+
+P = 
+    1.0  1.0  1.0  1.1  1.2  1.3  1.2  1.4  1.7 
+\end{verbatim}
+Para esclarecer detalles, se muestra el programa utilizado.    
+\begin{verbatim}
+int main(void)
+{ 
+ Polinomio<double> p;
+ int       n,m,d;
+ double    x[3];
+ double    px[2];
+ int       dim_px;
+ double    **P1;
+ double    *P2;
+ double    *P3;
+
+
+//muestro algunos datos
+  cout<<endl;
+  cout<<"Calculo de la matriz P con   p(x) = 1 + x + x*x"<<endl;
+  cout<<endl;
+
+//defino la dimension del espacio (datos en una dimension) y orden del polinomio
+  d=1; m=3;
+
+//construyo el polinomio p(x) = 1 + x + x*x + x*x*x
+  p.make(d,m); 
+
+//obtengo el numero de elmentos del polinomio
+  dim_px = p.get_M();
+
+//defino los puntos a evaluar
+   n = 3;
+   x[0] =  1.1;  x[1] =  1.2;  x[2] =  1.3;
+
+//construyo la matriz con las evaluaciones del polinomio en los nodos
+     P1 = p.build( x, n, d);
+
+   //muestro la matriz
+     show_mat(P1,  n, dim_px);
+     cout<<endl;
+	
+//construyo la matriz con las evaluaciones del polinomio en los nodos
+//empleo ROW_MAJOR	
+	 P2 = new double[n*dim_px];
+	 p.build( x, n, d, P2, n, dim_px);
+	 
+	//muestro la matriz
+	  show_mat(P2,n,dim_px);
+	  cout<<endl;	
+
+//construyo la matriz con las evaluaciones del polinomio en los nodos
+//empleo COL_MAJOR	
+	 P3 = new double[n*dim_px];
+	 p.build( x, n, d, P3,n,dim_px,1);
+	
+	//muestro la matriz
+	 show_mat(P3,n,dim_px);
+	 cout<<endl;	
+
+ return 0;
+}
+
+\end{verbatim}
+%-----------------------------------------
+
+\end{document}
+

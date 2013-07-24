@@ -1,0 +1,24 @@
+Testing the Allen-Cahn equation
+
+RBF info: 
+ name           : TPS
+ beta factor    : 4
+ degree pol     : 3
+ min degree pol : 3
+Pol info: 
+ data dimension : 1
+ order          : 3
+ base elements  : 3
+
+total nodes    N  = 51
+interior nodes ni = 49
+boundary nodes nf = 2
+
+condition number = 7.066215e+07
+running the simulation .... 
+t = 10.0000  max(u) = 1.4241  stept  = 0.0010   data/data10000
+t = 20.0000  max(u) = 1.2913  stept  = 0.0010   data/data20000
+t = 30.0000  max(u) = 1.0525  stept  = 0.0010   data/data30000
+t = 40.0000  max(u) = 1.4873  stept  = 0.0010   data/data40000
+t = 50.0000  max(u) = 1.1523  stept  = 0.0010   data/data50000
+t = 50.0000  max(u) = 1.1524  stept  = 2.5828e-11

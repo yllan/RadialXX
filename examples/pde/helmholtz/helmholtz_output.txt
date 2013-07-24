@@ -1,0 +1,21 @@
+RBF info: 
+ name           : POT
+ beta factor    : 7
+ degree pol     : 4
+ min degree pol : 4
+Pol info: 
+ data dimension : 2
+ order          : 4
+ base elements  : 10
+
+total nodes    N  = 625
+interior nodes ni = 529
+boundary nodes nf = 96
+
+condition number = 8.874573e+13
+
+ This equation was previously solved in the book of Trefethen(2000) and Fasshauer(pp413)
+ Meshfree approximation mwthods with matlab, book Fasshauer
+ the error reported in Fasshauer book was: u(0,0) = 0.01172256911
+ we determine the error as: u(0,0) = 0.0119671105
+

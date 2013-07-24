@@ -1,0 +1,278 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head>
+	<meta http-equiv="content-type" content="text/html; charset=utf-8" />
+	<meta name="description" content="Your description goes here" />
+	<meta name="keywords" content="multiquadric, interpolation, radial basis functions, unsymmetric method, meshless, scattered data interpolation" />
+	<meta name="author" content="Jose Antonio Munoz Gomez" />
+	
+	<link rel="stylesheet" type="text/css" href="andreas08.css" title="andreas08" media="screen,projection" />
+
+
+	<title>Radial++</title>
+</head>
+
+
+
+
+
+
+<body>
+
+
+<div id="container" >
+	<div id="header">
+		<h1>Radial++</h1>
+	</div>
+
+	<div id="navigation">
+		<ul>
+			<li><a href="index.html">Introduction</a></li>
+			<li><a href="download.html">Download</a></li>
+			<li><a href="documentation.html">Documentation</a></li>
+			<li><a href="interpolation.html">Interpolation</a></li>
+			<li><a href="pdes.html">PDEs</a></li>
+			<li><a href="future.html">Future</a></li>
+			<li class="selected"><a href="r2s.html">R2S</a></li>
+		</ul>
+     </div>
+
+	<div id="content" style="text-align: justify">
+
+    <h2>Radial2Seldon</h2>
+   
+		<p> This functions have been written in the spirit to incorporate additional functions in the library
+		    <a href="http://seldon.sourceforge.net/">Seldon</a>. 
+		    This is a preliminary version, feel free to make any suggestion: jantoniomex@gmail.com
+        </p> 
+        
+        <p>
+             All the functions provided work only for dense vectors and matrices, further work to cover a major 
+             class of matrices are begin undertaken by the authors of Radial++ and Seldon.
+             The original idea of the implementations for the next functions was taken from Blitz++ and suggested 
+             by Vivien Mallet, the author of Seldon.
+        </p>
+        <p> 
+             We provide approximately 40 functions which cover the classical math functions, overloaded arithmetic 
+             operators and some additional specialized functions. Clearly, we do not code explicitly all the functions, 
+             we use template metaprogramming to define in compilation time the necessary instations of the functions.
+         </p>  
+
+     <h4>How to include in Seldon</h4>
+       <p>
+          Just download <a href="https://sourceforge.net/projects/radial/">Radial++</a> and copy the folder 
+          radial2seldon in your prefered path.
+          Also, in your application include the header “radial2seldon.h” and provide to the
+          compiler the path where the folder radial2seldon is.
+      </p> 
+       
+     <h4>Elementary Math Functions</h4>
+     <p>
+         The following functions operate pointwise with  vector or matrix:
+
+Vector <-- function ( Vector )
+
+Matrix <-- function ( Matrix )
+
+where the classical pointwise functions are:
+     </p>
+
+ <table class="category-table"  frame="border">
+
+ <tr class="category-table-tr-2">
+ <td class="category-table-td"><a>sin </a></td> 
+ <td class="category-table-td"> sine </td> </tr>
+
+ <tr class="category-table-tr-1">
+ <td class="category-table-td"><a> sinh </a></td> 
+ <td class="category-table-td"> hyperbolic sine </td> </tr>
+
+ <tr class="category-table-tr-2">
+ <td class="category-table-td"><a> asin </a></td> 
+ <td class="category-table-td"> inverse sine </td> </tr>
+
+ <tr class="category-table-tr-1">
+ <td class="category-table-td"><a> cos </a></td> 
+ <td class="category-table-td"> cosine </td> </tr>
+
+ <tr class="category-table-tr-2">
+ <td class="category-table-td"><a> cosh  </a></td> 
+ <td class="category-table-td"> hyperbolic cosine  </td> </tr>
+
+
+ <tr class="category-table-tr-1">
+ <td class="category-table-td"><a> acos </a></td> 
+ <td class="category-table-td"> inverse cosine </td> </tr>
+
+ <tr class="category-table-tr-2">
+ <td class="category-table-td"><a> tan  </a></td> 
+ <td class="category-table-td"> tangent  </td> </tr>
+
+ <tr class="category-table-tr-1">
+ <td class="category-table-td"><a> tanh </a></td> 
+ <td class="category-table-td"> hyperbolic tangent </td> </tr>
+
+ <tr class="category-table-tr-2">
+ <td class="category-table-td"><a> atan </a></td> 
+ <td class="category-table-td"> inverse tangent </td> </tr>
+
+ <tr class="category-table-tr-1">
+ <td class="category-table-td"><a> exp </a></td> 
+ <td class="category-table-td"> exponential </td> </tr>
+
+ <tr class="category-table-tr-2">
+ <td class="category-table-td"><a> log </a></td> 
+ <td class="category-table-td"> natural lograrithm  </td> </tr>
+
+ <tr class="category-table-tr-1">
+ <td class="category-table-td"><a> log10 </a></td> 
+ <td class="category-table-td">  logarithm base 10 </td> </tr>
+
+
+ <tr class="category-table-tr-2">
+ <td class="category-table-td"><a> sqrt </a></td> 
+ <td class="category-table-td"> square root </td> </tr>
+
+ <tr class="category-table-tr-1">
+ <td class="category-table-td"><a> ceil </a></td> 
+ <td class="category-table-td"> smallest integer not less than the ceil argument </td> </tr>
+
+ <tr class="category-table-tr-2">
+ <td class="category-table-td"><a> floor </a></td> 
+ <td class="category-table-td">  largest integer not greater than the floor argument </td> </tr>
+
+ <tr class="category-table-tr-1">
+ <td class="category-table-td"><a> fabs </a></td> 
+ <td class="category-table-td">  absolute value </td> </tr>
+
+
+ <tr class="category-table-tr-2">
+ <td class="category-table-td"><a> pow2(x) </a></td> 
+ <td class="category-table-td">  return x*x </td> </tr>
+
+ <tr class="category-table-tr-1">
+ <td class="category-table-td"><a> pow3(x) </a></td> 
+ <td class="category-table-td">  return x*x*x </td> </tr>
+
+
+ <tr class="category-table-tr-2">
+ <td class="category-table-td"><a> pow4(x) </a></td> 
+ <td class="category-table-td">  return x*x*x*x  </td> </tr>
+
+</table>
+
+
+   <br>
+  <h4>Note</h4>   
+<p>
+  In  your programs, it is possible to define your own pointwise functions,  for example to perform the pointwise evaluation: 
+  sin(x) + cos(x)*sin(x) over a vector or matrix, we define:
+</p>
+<p>
+template<typename T>  <br>
+T  myFunc(T x)        <br> 
+{                     <br> 
+      return sin(x) + cos(x)*sin(x); <br>	
+ } <br>
+<p>
+
+<p>
+SELDON_DEFINE_FUNC(myFunc)
+</p>
+
+<p>
+int main(void)  <br>
+{  <br>
+  Vector<double>  x,y;  <br>
+
+   y = myFunc(x);  <br>
+   .....  <br>	
+ } <br>
+
+</p>
+     
+     
+     
+     
+     <h4>Overloaded Arithmetic Operators</h4>
+     <p>
+       The following functions are not designed for high performance computing, we did not use expression templates, metaprogramming or delayed evaluations like Blitz++ or Matrix Template Library. Further work to diminish this drawback is begin undertaken. However, the next operators can be used for fast prototyping without sacrify readibility in the programs.
+     </p>
+     
+     <p>
+        The overloaded binary arithmetic operators for Vector and Matrices are:
+     </p>
+     
+     <p>
+       Vector <--  Vector  +/-  Vector   <br>
+       Vector  <--  Vector  +/-  T <br>
+       Vector  <--       T     +/-  Vector <br>
+       Vector  <--   Vector^T                  pointwise like “.^”  in Octave <br>
+
+    </p>
+    
+    <p>
+       Matrix <--  Matrix +/- Matrix <br>
+        Matrix    <--  Matrix  +/-  T <br>
+        Matrix     <--       T     +/-  Matrix <br>
+    </p>
+                                 
+    <p>                             
+        Matrix <--   Matrix * Vector <br>
+        Matrix <--   Matrix * Matrix <br>
+     </p>
+     
+    <p> 
+       where  T  is a  scalar not necessarily of the same data type of the vector or matrix.
+    </p> 
+     
+     
+     
+     
+     
+     
+     
+ <h4>Functions</h4>
+ 
+ <p>
+   Also, we provide the following useful functions:
+ </p>
+ 
+ <table class="category-table"  frame="border">
+
+ <tr class="category-table-tr-2">
+ <td class="category-table-td"><a>pdot </a></td> 
+ <td class="category-table-td"> similar to '.*' in Octave </td> </tr>
+
+ <tr class="category-table-tr-1">
+ <td class="category-table-td"><a> linspace</a></td> 
+ <td class="category-table-td"> generate linearly spaced vectors</td> </tr>
+
+ <tr class="category-table-tr-2">
+ <td class="category-table-td"><a> logspace</a></td> 
+ <td class="category-table-td"> generate logarithmically spaced vectors</td> </tr>
+
+ <tr class="category-table-tr-1">
+ <td class="category-table-td"><a> max</a></td> 
+ <td class="category-table-td"> get the maximun value</td> </tr>
+
+ <tr class="category-table-tr-2">
+ <td class="category-table-td"><a> min</a></td> 
+ <td class="category-table-td"> get the minimun value</td> </tr>
+</table>
+
+
+
+<br>
+
+
+</div>
+
+
+	<div id="footer">
+		<p>&copy; 2009 J. Antonio Mu&ntilde;oz-G&oacute;mez</p>
+	</div>
+
+</div>
+</body>
+</html>

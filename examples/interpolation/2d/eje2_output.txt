@@ -1,0 +1,111 @@
+
+In this numerical experiment, we choose tps with differents exponents.
+
+RBF info: 
+ name           : TPS
+ beta factor    : 2
+ degree pol     : 2
+ min degree pol : 2
+Pol info: 
+ data dimension : 2
+ order          : 2
+ base elements  : 3
+condition number = 3.056041e+06
+
+Testing 2-d interpolation
+ f(x,y) = sin(x)*exp(-y) + cos(y)*exp(-x)
+we build the interpolation with n-centers = 400
+determine the error in m centers = 1600
+e_max = 0.0154458
+
+----------------------------------------------------------------
+RBF info: 
+ name           : TPS
+ beta factor    : 4
+ degree pol     : 3
+ min degree pol : 3
+Pol info: 
+ data dimension : 2
+ order          : 3
+ base elements  : 6
+condition number = 2.261768e+10
+
+Testing 2-d interpolation
+ f(x,y) = sin(x)*exp(-y) + cos(y)*exp(-x)
+we build the interpolation with n-centers = 400
+determine the error in m centers = 1600
+e_max = 0.00642235
+
+----------------------------------------------------------------
+RBF info: 
+ name           : TPS
+ beta factor    : 6
+ degree pol     : 4
+ min degree pol : 4
+Pol info: 
+ data dimension : 2
+ order          : 4
+ base elements  : 10
+condition number = 2.315838e+14
+
+Testing 2-d interpolation
+ f(x,y) = sin(x)*exp(-y) + cos(y)*exp(-x)
+we build the interpolation with n-centers = 400
+determine the error in m centers = 1600
+e_max = 0.00167437
+
+----------------------------------------------------------------
+RBF info: 
+ name           : TPS
+ beta factor    : 8
+ degree pol     : 5
+ min degree pol : 5
+Pol info: 
+ data dimension : 2
+ order          : 5
+ base elements  : 15
+condition number = 2.689340e+18
+
+Testing 2-d interpolation
+ f(x,y) = sin(x)*exp(-y) + cos(y)*exp(-x)
+we build the interpolation with n-centers = 400
+determine the error in m centers = 1600
+e_max = 0.000498852
+
+----------------------------------------------------------------
+RBF info: 
+ name           : TPS
+ beta factor    : 10
+ degree pol     : 6
+ min degree pol : 6
+Pol info: 
+ data dimension : 2
+ order          : 6
+ base elements  : 21
+condition number = 3.403011e+22
+
+Testing 2-d interpolation
+ f(x,y) = sin(x)*exp(-y) + cos(y)*exp(-x)
+we build the interpolation with n-centers = 400
+determine the error in m centers = 1600
+e_max = 0.000148168
+
+----------------------------------------------------------------
+RBF info: 
+ name           : TPS
+ beta factor    : 12
+ degree pol     : 7
+ min degree pol : 7
+Pol info: 
+ data dimension : 2
+ order          : 7
+ base elements  : 28
+condition number = 4.611884e+26
+
+Testing 2-d interpolation
+ f(x,y) = sin(x)*exp(-y) + cos(y)*exp(-x)
+we build the interpolation with n-centers = 400
+determine the error in m centers = 1600
+e_max = 4.51215e-05
+
+----------------------------------------------------------------

@@ -1,0 +1,17 @@
+RBF info: 
+ name           : TPS
+ beta factor    : 4
+ degree pol     : 3
+ min degree pol : 3
+Pol info: 
+ data dimension : 2
+ order          : 3
+ base elements  : 6
+
+total nodes    N  = 401
+interior nodes ni = 325
+boundary nodes nf = 76
+
+condition number = 3.112833e+08
+
+The maximum error: e_max = 6.175616e-16

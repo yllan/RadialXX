@@ -1,0 +1,276 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD XHTML 1.1//EN" "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
+<html xml:lang="en" xmlns="http://www.w3.org/1999/xhtml"><head>
+
+
+<meta http-equiv="content-type" content="text/html; charset=UTF-8">
+<title>C++ code colored by C++2HTML</title>
+<meta name="generator" content="C++2HTML by Jasper Bedaux">
+<!-- To generate your own colored code visit http://www.bedaux.net/cpp2html/ -->
+<style type="text/css">
+.comment { color: #999999; font-style: italic; }
+.pre { color: #000099; }
+.string { color: #009900; }
+.char { color: #009900; }
+.float { color: #996600; }
+.int { color: #999900; }
+.bool { color: #000000; font-weight: bold; }
+.type { color: #FF6633; }
+.flow { color: #FF0000; }
+.keyword { color: #990000; }
+.operator { color: #663300; font-weight: bold; }
+</style>
+</head><body>
+<pre><span class="comment">//-------------------------------------------------------------------------
+//
+//  Copyright (C) 2009   Jose Antonio Munoz Gomez
+//
+//  This file is part of Radial++
+//  http://sourceforge.net/projects/radial/
+//
+//  Radial++ is free software;  you can redistribute it and/or it under the
+//  terms of the GNU Lesser General Public License as published by the Free 
+//  Software Foundation; either version 3 of the License, or (at your option)
+//  any later version.
+//
+//  Radial++ is distributed in the hope that it will be useful, but WITHOUT
+//  ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or
+//  FITNESS FOR A PARTICULAR PURPOSE.  See the GNU Lesser General Public 
+//  License for more details.
+//
+//-------------------------------------------------------------------------
+ 
+//
+//  Solve the advection equation in two-dimensions 
+//      
+//             Ut + Ux + Uy = 0
+//      
+// with zero at Dirichlet data and initia condition a
+// Gaussian function at the point (0.3,0.3).
+// 
+// We employ the MQ kernel with c = 0.1.
+//
+</span><span class="pre">
+
+#ifdef WITH_LAPACK  
+  #define SELDON_WITH_CBLAS
+  #define SELDON_WITH_LAPACK
+#endif  
+
+
+#include "radial.h"
+</span><span class="comment">
+
+//---------------------------------------------------------
+</span><span class="keyword">template</span><span class="operator">&lt;</span><span class="keyword">typename</span> T<span class="operator">&gt;</span>
+T solution<span class="operator">(</span>T t<span class="operator">,</span> T x<span class="operator">,</span> T y<span class="operator">)
+{</span><span class="flow">
+  return</span>  exp<span class="operator">(-</span><span class="float">1.0</span><span class="operator">*(( (</span>x<span class="operator">-</span>t<span class="operator">-</span><span class="float">0.3</span><span class="operator">)*(</span>x<span class="operator">-</span>t<span class="operator">-</span><span class="float">0.3</span><span class="operator">)+(</span>y<span class="operator">-</span>t<span class="operator">-</span><span class="float">0.3</span><span class="operator">)*(</span>y<span class="operator">-</span>t<span class="operator">-</span><span class="float">0.3</span><span class="operator">) ) /</span><span class="float"> 0.005</span><span class="operator">));
+
+}</span><span class="comment">//---------------------------------------------------------
+</span><span class="keyword">template</span><span class="operator">&lt;</span><span class="keyword">typename</span> Vec<span class="operator">&gt;</span><span class="type">
+void</span> initial_condition<span class="operator">(</span>Vec<span class="operator"> &amp;</span>x<span class="operator">,</span> Vec<span class="operator"> &amp;</span>y<span class="operator">,</span><span class="type"> int</span> ni<span class="operator">,</span> Vec<span class="operator"> &amp;</span>u<span class="operator">)
+{</span><span class="flow">
+   for</span><span class="operator">(</span><span class="type">int</span> i<span class="operator">=</span><span class="int">0</span><span class="operator">;</span>i<span class="operator">&lt;</span>ni<span class="operator">;</span>i<span class="operator">++)</span>
+     u<span class="operator">(</span>i<span class="operator">) =</span> exp<span class="operator">(-</span><span class="float">1.0</span><span class="operator">*(( (</span>x<span class="operator">(</span>i<span class="operator">)-</span><span class="float">0.3</span><span class="operator">)*(</span>x<span class="operator">(</span>i<span class="operator">)-</span><span class="float">0.3</span><span class="operator">)+(</span>y<span class="operator">(</span>i<span class="operator">)-</span><span class="float">0.3</span><span class="operator">)*(</span>y<span class="operator">(</span>i<span class="operator">)-</span><span class="float">0.3</span><span class="operator">) ) /</span><span class="float"> 0.005</span><span class="operator">));
+
+}</span><span class="comment">
+//---------------------------------------------------------
+</span><span class="keyword">template</span><span class="operator">&lt;</span><span class="keyword">typename</span> T<span class="operator">&gt;</span>
+T boundary<span class="operator">(</span>T t<span class="operator">,</span><span class="keyword">const</span> T x<span class="operator">,</span><span class="keyword">const</span> T y<span class="operator">)
+{</span><span class="flow">
+   return</span><span class="float">  0.0</span><span class="operator">;
+}</span><span class="comment">
+//---------------------------------------------------------
+</span><span class="keyword">template</span><span class="operator"> &lt;</span><span class="keyword">typename</span> RBF<span class="operator">&gt;</span><span class="type">
+void</span> advection<span class="operator">(</span>RBF rbf<span class="operator">,</span><span class="type"> int</span> beta<span class="operator">,</span><span class="type"> int</span> N<span class="operator">)
+{</span>
+  Polinomio<span class="operator">&lt;</span><span class="type">double</span><span class="operator">&gt;</span>   pol<span class="operator">;</span>
+  LU<span class="operator">&lt;</span><span class="type">double</span><span class="operator">&gt;</span>          lu<span class="operator">;</span>
+  Matrix<span class="operator">&lt;</span><span class="type">double</span><span class="operator">&gt;</span>      U<span class="operator">,</span>Ux<span class="operator">,</span>Uy<span class="operator">,</span>H<span class="operator">;</span>
+  Vector<span class="operator">&lt;</span><span class="type">double</span><span class="operator">&gt;</span>      x<span class="operator">,</span>y<span class="operator">,</span>f<span class="operator">;</span>
+  Vector<span class="operator">&lt;</span><span class="type">double</span><span class="operator">&gt;</span>      u<span class="operator">,</span>lambda<span class="operator">,</span>b<span class="operator">;</span><span class="type">
+  double</span>              c<span class="operator">=</span><span class="float">0.01</span><span class="operator">;</span><span class="type">
+  int</span>                 n<span class="operator">,</span>ni<span class="operator">,</span>m<span class="operator">;</span><span class="type">
+  char</span>                filename<span class="operator">[</span><span class="int">255</span><span class="operator">];</span>
+  timer               time<span class="operator">;</span>
+  
+  
+   cout<span class="operator">&lt;&lt;</span><span class="string">"Testing the advection equation"</span><span class="operator">&lt;&lt;</span>endl<span class="operator">;</span>
+   cout<span class="operator">&lt;&lt;</span>endl<span class="operator">;</span><span class="comment"> 	
+   
+//shape parameters
+</span>   c<span class="operator"> =</span><span class="float"> 0.12</span><span class="operator">;</span><span class="comment">
+	
+//make the grid points in [0,1] x [0,1]
+</span>   make_data<span class="operator">(</span><span class="int">0</span><span class="operator">,</span><span class="int">1</span><span class="operator">,</span><span class="int">0</span><span class="operator">,</span><span class="int">1</span><span class="operator">,</span> N<span class="operator">,</span> N<span class="operator">,</span> x<span class="operator">,</span> y<span class="operator">,</span> ni<span class="operator">,</span> n<span class="operator">);</span><span class="comment">
+    
+//set the exponent in TPS  
+</span><span class="flow">   if</span><span class="operator">(</span>beta<span class="operator">&gt;</span><span class="int">0</span><span class="operator">){</span>
+      rbf<span class="operator">.</span>set_beta<span class="operator">(</span>beta<span class="operator">);
+   }</span><span class="comment">
+   
+//configure the associate polynomial   
+</span>   pol<span class="operator">.</span>make<span class="operator">(</span><span class="int">2</span><span class="operator"> ,</span> rbf<span class="operator">.</span>get_degree_pol<span class="operator">());</span><span class="comment">
+
+//show the rbf and pol info
+</span>   cout<span class="operator">&lt;&lt;</span>rbf<span class="operator">;</span>
+   cout<span class="operator">&lt;&lt;</span>pol<span class="operator">;</span><span class="comment">
+   
+//show the number of nodes   
+</span>   cout<span class="operator">&lt;&lt;</span>endl<span class="operator">;</span>
+   cout<span class="operator">&lt;&lt;</span><span class="string">"total nodes    N  = "</span><span class="operator">&lt;&lt;</span>n<span class="operator">&lt;&lt;</span>endl<span class="operator">;</span>
+   cout<span class="operator">&lt;&lt;</span><span class="string">"interior nodes ni = "</span><span class="operator">&lt;&lt;</span>ni<span class="operator">&lt;&lt;</span>endl<span class="operator">;</span>
+   cout<span class="operator">&lt;&lt;</span><span class="string">"boundary nodes nf = "</span><span class="operator">&lt;&lt;</span>n<span class="operator">-</span>ni<span class="operator">&lt;&lt;</span>endl<span class="operator">;</span>
+   cout<span class="operator">&lt;&lt;</span>endl<span class="operator">;</span><span class="comment">
+
+//get the number of elements in the polynomial base
+</span>   m<span class="operator"> =</span> pol<span class="operator">.</span>get_M<span class="operator">();</span><span class="comment">
+    
+//create the initial condition at t=0    
+</span>   b<span class="operator">.</span>Reallocate<span class="operator">(</span>n<span class="operator">+</span>m<span class="operator">);</span> b<span class="operator"> =</span><span class="float"> 0.0</span><span class="operator">;</span>
+   
+   initial_condition<span class="operator">(</span>x<span class="operator">,</span>y<span class="operator">,</span>ni<span class="operator">,</span>b<span class="operator">);</span><span class="comment">
+   
+
+//create the required matrices to solve the PDE problem
+</span>   U<span class="operator">.</span>Reallocate<span class="operator">(</span>n<span class="operator">+</span>m<span class="operator">,</span>n<span class="operator">+</span>m<span class="operator">);</span>   U<span class="operator">  =</span><span class="float"> 0.0</span><span class="operator">;</span>
+   Ux<span class="operator">.</span>Reallocate<span class="operator">(</span>n<span class="operator">+</span>m<span class="operator">,</span>n<span class="operator">+</span>m<span class="operator">);</span>  Ux<span class="operator"> =</span><span class="float"> 0.0</span><span class="operator">;</span>
+   Uy<span class="operator">.</span>Reallocate<span class="operator">(</span>n<span class="operator">+</span>m<span class="operator">,</span>n<span class="operator">+</span>m<span class="operator">);</span>  Uy<span class="operator"> =</span><span class="float"> 0.0</span><span class="operator">;</span>    
+   H<span class="operator">.</span>Reallocate<span class="operator">(</span>n<span class="operator">+</span>m<span class="operator">,</span>n<span class="operator">+</span>m<span class="operator">);</span>   H<span class="operator">  =</span><span class="float"> 0.0</span><span class="operator">;</span><span class="comment">   
+
+      
+//fill the matrices with the derivatives  
+</span>   fillMatrix<span class="operator">(</span><span class="string">   "dx"</span><span class="operator">     ,</span> rbf<span class="operator"> ,</span> c<span class="operator"> ,</span> pol<span class="operator"> ,</span> x<span class="operator"> ,</span> y<span class="operator">,</span><span class="int"> 0</span><span class="operator"> ,</span>  ni<span class="operator"> ,</span>  Ux<span class="operator">);</span>
+   fillMatrix<span class="operator">(</span><span class="string">   "dy"</span><span class="operator">     ,</span> rbf<span class="operator"> ,</span> c<span class="operator"> ,</span> pol<span class="operator"> ,</span> x<span class="operator"> ,</span> y<span class="operator">,</span><span class="int"> 0</span><span class="operator"> ,</span>  ni<span class="operator"> ,</span>  Uy<span class="operator">);</span>
+     
+   fillMatrix<span class="operator">(</span><span class="string">   "normal"</span><span class="operator">  ,</span> rbf<span class="operator"> ,</span> c<span class="operator"> ,</span> pol<span class="operator"> ,</span> x<span class="operator"> ,</span> y<span class="operator">,</span><span class="int"> 0</span><span class="operator">,</span>   ni<span class="operator"> ,</span>  U<span class="operator">);</span><span class="comment">
+
+//fill the matrix H required in: H lambda_n+1 =  H lambda_n - stept(Ux+Uy) lambda_n 
+</span>   fillMatrix<span class="operator">(</span><span class="string">   "normal"</span><span class="operator">  ,</span> rbf<span class="operator"> ,</span> c<span class="operator"> ,</span> pol<span class="operator"> ,</span> x<span class="operator"> ,</span> y<span class="operator">,</span><span class="int"> 0</span><span class="operator">,</span>   n<span class="operator"> ,</span>   H<span class="operator">);</span>
+   fillMatrix<span class="operator">(</span><span class="string"> "pol_trans"</span><span class="operator"> ,</span> rbf<span class="operator"> ,</span> c<span class="operator"> ,</span> pol<span class="operator"> ,</span> x<span class="operator"> ,</span> y<span class="operator">,</span> n<span class="operator"> ,</span>  n<span class="operator">+</span>m<span class="operator">,</span>  H<span class="operator">);</span><span class="comment">
+
+
+//LU factorization over the matriz H, overwrite en H
+</span>    cout<span class="operator">&lt;&lt;</span><span class="string">"running the LU matrix factorization .... "</span><span class="operator">&lt;&lt;</span>endl<span class="operator">;</span>
+    lu<span class="operator">.</span>factorize<span class="operator">(</span>H<span class="operator">,</span><span class="int">1</span><span class="operator">);</span><span class="comment">
+	
+//H contain the LU factorization: LU &lt;-H
+//  solve  Lz=b, Ux=z   x=lambda
+</span>   lambda<span class="operator"> =</span> lu<span class="operator">.</span>solve<span class="operator">(</span>H<span class="operator">,</span>b<span class="operator">);</span><span class="comment">
+	
+//get the initial approximation at t=0	
+</span>   u<span class="operator"> =</span> U<span class="operator">*</span>lambda<span class="operator">;</span><span class="comment">
+      
+//store the final data solution at t=0
+</span>   save_gnu_data<span class="operator">(</span><span class="string">"data/data0"</span><span class="operator">,</span>x<span class="operator">,</span>y<span class="operator">,</span>b<span class="operator">);</span><span class="comment">
+ 
+//now, the Euler scheme    
+</span>   cout<span class="operator">&lt;&lt;</span><span class="string">"running the simulation .... "</span><span class="operator">&lt;&lt;</span>endl<span class="operator">;</span><span class="type">
+
+   double</span>  stept<span class="operator"> =</span><span class="float"> 0.0001</span><span class="operator">;</span><span class="type">
+   double</span>  t<span class="operator">     =</span><span class="int"> 0</span><span class="operator">;</span><span class="type">
+   double</span>  tmax<span class="operator">  =</span><span class="float"> 0.2</span><span class="operator">;</span><span class="type">
+   int</span>    cont<span class="operator">   =</span><span class="int"> 0</span><span class="operator">;</span><span class="comment">
+
+//validate the fixed stept time
+</span>   check_stept<span class="operator">(</span>tmax<span class="operator">,</span> stept<span class="operator">);</span>
+
+     
+   Ux<span class="operator"> =</span>  stept<span class="operator">*(</span>Ux<span class="operator"> +</span> Uy<span class="operator">);</span>
+
+
+   time<span class="operator">.</span>tic<span class="operator">();</span><span class="flow">
+   
+  while</span><span class="operator">(</span> t<span class="operator">&lt;</span>tmax<span class="operator"> )
+  {</span><span class="comment">        
+        //correct the stept time
+</span><span class="flow">         if</span><span class="operator">(</span> correct_stept<span class="operator">(</span>t<span class="operator">,</span> tmax<span class="operator">,</span> stept<span class="operator">) ==</span><span class="bool"> false</span><span class="operator"> )</span><span class="flow">
+            break</span><span class="operator">;</span><span class="comment">
+          
+        //Euler Method
+</span>           u<span class="operator"> =</span> u<span class="operator"> -</span>   Ux<span class="operator"> *</span> lambda<span class="operator"> ;</span><span class="comment">  //MltAdd(-1.0, Ux, lambda, 1.0, u);            
+            
+       //set zero in the boundary and the polynomial part
+</span><span class="flow">           for</span><span class="operator">(</span><span class="type">int</span> i<span class="operator">=</span>ni<span class="operator">;</span> i<span class="operator">&lt;(</span>n<span class="operator">+</span>m<span class="operator">);</span> i<span class="operator">++)</span> u<span class="operator">(</span>i<span class="operator">) =</span><span class="float"> 0.0</span><span class="operator">;</span><span class="comment">
+
+       //solve the linear system of equations, H contain the LU=A
+</span>	       lambda<span class="operator"> =</span> lu<span class="operator">.</span>solve<span class="operator">(</span>H<span class="operator">,</span>u<span class="operator">);</span><span class="comment">
+
+	     
+	   //advance the time step  
+</span>         t<span class="operator"> =</span> t<span class="operator"> +</span> stept<span class="operator">;</span><span class="flow">
+         
+         
+        if</span><span class="operator">( (++</span>cont<span class="operator">%</span><span class="int">100</span><span class="operator">)==</span><span class="int">0</span><span class="operator">){</span>
+        
+          sprintf<span class="operator">(</span>filename<span class="operator">,</span><span class="string">"data/data%d"</span><span class="operator">,</span>cont<span class="operator">);</span>
+  	      save_gnu_data<span class="operator">(</span>filename<span class="operator">,</span>x<span class="operator">,</span>y<span class="operator">,</span>u<span class="operator">);</span>  
+  	      
+          printf<span class="operator">(</span><span class="string">"t = %.4f"</span><span class="operator">,</span>t<span class="operator">);</span>
+          printf<span class="operator">(</span><span class="string">"  max(u) = %.4f"</span><span class="operator">,</span>max<span class="operator">(</span>u<span class="operator">));</span>
+		  printf<span class="operator">(</span><span class="string">"  stept  = %.4f   %s\n"</span><span class="operator">,</span>stept<span class="operator">,</span>filename<span class="operator">);
+        
+  	    }
+
+  	    
+ }</span><span class="comment"> //while(t&lt;tmax)
+</span> 
+   cout<span class="operator">&lt;&lt;</span>endl<span class="operator">;</span>
+   cout<span class="operator">&lt;&lt;</span><span class="string">"Elapsed time (loop) = "</span><span class="operator">&lt;&lt;</span>time<span class="operator">.</span>toc<span class="operator">()&lt;&lt;</span><span class="string">" sec"</span><span class="operator">&lt;&lt;</span>endl<span class="operator">;</span>
+   cout<span class="operator">&lt;&lt;</span>endl<span class="operator">;</span><span class="comment">
+
+    
+//store the final data solution at t=tmax    
+</span>   save_gnu_data<span class="operator">(</span><span class="string">"data/datan"</span><span class="operator">,</span>x<span class="operator">,</span>y<span class="operator">,</span>u<span class="operator">);</span><span class="comment">
+   
+ //determine the maximum error
+</span><span class="type">   double</span> e<span class="operator">=</span><span class="float">0.0</span><span class="operator">;</span><span class="type">
+   double</span> tmp<span class="operator">;</span><span class="flow">
+   for</span><span class="operator">(</span><span class="type">int</span> i<span class="operator">=</span><span class="int">0</span><span class="operator">;</span>i<span class="operator">&lt;</span>n<span class="operator">;</span>i<span class="operator">++)
+   {</span>
+   	  tmp<span class="operator">  =</span> u<span class="operator">(</span>i<span class="operator">) -</span> solution<span class="operator">(</span>t<span class="operator">,</span>x<span class="operator">(</span>i<span class="operator">),</span>y<span class="operator">(</span>i<span class="operator">));</span>
+        e<span class="operator">  =</span> max<span class="operator">(</span>e<span class="operator">,</span> fabs<span class="operator">(</span>tmp<span class="operator">) ) ;
+   }</span><span class="comment">
+     
+     
+//show the error     
+</span>   cout<span class="operator">&lt;&lt;</span>endl<span class="operator">;</span>
+   cout<span class="operator">&lt;&lt;</span><span class="string">"The maximum error: e_max = "</span><span class="operator">&lt;&lt;</span>e<span class="operator">&lt;&lt;</span>endl<span class="operator">;  
+
+}</span><span class="comment">
+//---------------------------------------------------------
+</span><span class="type">int</span><span class="keyword"> main</span><span class="operator">(</span><span class="type">int</span> argc<span class="operator">,</span><span class="type"> char</span><span class="operator"> **</span>argv<span class="operator">)
+{</span>
+  MQ<span class="operator">&lt;</span><span class="type">double</span><span class="operator">&gt;</span>     rbf_mq<span class="operator">;</span>
+  TPS<span class="operator">&lt;</span><span class="type">double</span><span class="operator">&gt;</span>     rbf_tps<span class="operator">;</span>
+  POT<span class="operator">&lt;</span><span class="type">double</span><span class="operator">&gt;</span>    rbf_pot<span class="operator">;</span><span class="type">
+  int</span>   op<span class="operator">,</span>n<span class="operator">;</span><span class="flow">
+  
+  if</span><span class="operator">(</span>argc<span class="operator">&lt;</span><span class="int">3</span><span class="operator">){</span>
+     printf<span class="operator">(</span><span class="string">"./advection &lt;op&gt; n\n"</span><span class="operator">);</span>
+     printf<span class="operator">(</span><span class="string">"       op = 1  use MQ  multiquadric with c=0.12\n"</span><span class="operator">);</span>
+     printf<span class="operator">(</span><span class="string">"       op = 2  use TPS thin-plate-spline r^4 log r\n"</span><span class="operator">);</span>    
+     printf<span class="operator">(</span><span class="string">"       op = 3  use POT  r^5\n"</span><span class="operator">);</span>
+     printf<span class="operator">(</span><span class="string">"        n = number of nodes, n x n\n"</span><span class="operator">);</span><span class="flow">
+     return</span><span class="int"> 1</span><span class="operator">;
+  }</span>
+  
+  op<span class="operator"> =</span> atoi<span class="operator">(</span>argv<span class="operator">[</span><span class="int">1</span><span class="operator">]);</span>
+  n<span class="operator">  =</span> atoi<span class="operator">(</span>argv<span class="operator">[</span><span class="int">2</span><span class="operator">]);</span><span class="flow">
+  switch</span><span class="operator">(</span>op<span class="operator">)
+  {</span><span class="flow">
+    case</span><span class="int"> 1</span><span class="operator">:</span> advection<span class="operator">(</span>rbf_mq<span class="operator">,-</span><span class="int">1</span><span class="operator">,</span>n<span class="operator">);</span><span class="flow">
+            break</span><span class="operator">;</span><span class="flow">
+    case</span><span class="int"> 2</span><span class="operator">:</span> advection<span class="operator">(</span>rbf_tps<span class="operator">,</span><span class="int">4</span><span class="operator">,</span>n<span class="operator">);</span><span class="flow">
+            break</span><span class="operator">;</span><span class="flow">
+    case</span><span class="int"> 3</span><span class="operator">:</span> advection<span class="operator">(</span>rbf_pot<span class="operator">,</span><span class="int">5</span><span class="operator">,</span>n<span class="operator">);</span><span class="flow">
+            break</span><span class="operator">;
+  }</span><span class="flow">
+  
+  return</span><span class="int"> 0</span><span class="operator">;
+}</span>
+
+
+
+</pre>
+</body></html>

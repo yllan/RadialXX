@@ -1,0 +1,159 @@
+                  =====================
+                  RADIAL++ README FILE
+                  =====================
+                            
+                     Alpha -- Version
+                      Version 0.1.2
+
+==============================================================================
+ Radial++
+==============================================================================
+
+Radial++ is a library of classes and templates in C++ for the numerical solution 
+of partial differential equations (no weak solutions) and the interpolation
+of scattered data by Radial Basis Functions (RBFs).
+
+Radial++ works with generalized RBFs, like thin-plate splines, power splines,
+Gaussian, multiquadrics and inverse multiquadrics. This means that you can
+configurate the RBF to work with any degreee of the associated polynomial
+to the RBF and also, give the free exponent in the generalized RBF.
+
+In particular, we can interpolate data in any dimension, and also, the library
+provide several examples for numerical solution of partial differential
+equations by using the unsymmetric collocation method.
+
+
+The RBFs in Radial++ are:
+
+      RBF                          C++
+    -----------------------------------
+    Multiquadric                   MQ
+    Thin-Plate Splines             TPS
+    Radial Powers                  POT
+    Gaussian                       GAU
+    Inverse Multiquadric           IMQ
+   
+    C++                                      beta        
+    ----------------------------------------------------
+    MQ         phi(x) = (r^2+c^2)^(beta/2)   1,3,5,7,..
+    IMQ        phi(x) = (r^2+c^2)^(-beta/2)  1,3,5,7,..
+    GAU        phi(x) = exp(-r^2*c^2)        ---------
+    TPS        phi(x) = r^beta log(r)        2,4,6,8,...
+    POT        phi(x) = r^beta               1,3,5,7,...  
+
+    r = || x ||_2  Euclidean distance
+     
+    c = shape parameter
+    
+    C++    default beta value
+    -------------------------
+    MQ            1
+    IMQ           1
+    GAU           -
+    TPS           2
+    POT           1      
+    
+    The degree of the polynomial depends of the choosed RBF, the
+    default values are:
+    
+     C++          m
+    -------------------------
+    MQ            ceil(beta/2)     see theorem 8.15 page 109 in book Scattered Data Approximation          
+    IMQ           ---              see theorem 6.13 page 76  in book Scattered Data Approximation
+    GAU           ---              see theorem 6.10 page 74  in book Scattered Data Approximation
+    TPS           1+beta/2         see theorem 8.17 page 112 in book Scattered Data Approximation
+    POT           ceil(beta/2)     see theorem 8.16 page 111 in book Scattered Data Approximation
+    
+    Recall, the total degree of the polynomial is m-1.
+    Also, you can configurate this value to obtain more polynomial precission.
+    Each RBF can be configurated with beta and m.
+
+
+Radial use the library called Seldon to perform matrix and vector operations,
+Seldon is included, so, you dont need to download Seldon.  It is convenient to
+say that the best performance is obtained with the interface to BLAS and LAPACK,
+see Seldon. Radial++ can work without the interface of BLAS and LAPACK. In 
+particular, all the provided examples run without any external pre-installed 
+library.
+
+This README file describes how to install the libray called RADIAL++.
+
+==============================================================================
+ The Compiler
+==============================================================================
+
+Radial++ is supposed to be fully compliant with the C++ standard. 
+Therefore, it can be compiled by GNU GCC (>=3.0; tested with version 3.4, 4.4). 
+No tests were conducted with proprietary compilers under Unix, but the 
+compliance with the C++ standard should ensure portability.  Please tell 
+me if you have any problem running the test problems.
+
+==============================================================================
+ Installation
+==============================================================================
+The library called Radial++ is ready to run "out the box", it is not neccesary
+to have a previous library installed in your machine. All the necessary files
+are contained in Radial++.
+
+To compile the examples only modify the file:
+
+  examples/Makefile.in 
+
+in particular the "tag" <RBF> which correspond to the path where the library 
+was unzipped.
+
+!!This is the only modification that you need to do to run all the examples.
+
+
+If additionn, optionally, in the file examples/Makefile.in you can modify the
+compiler selected (CXX==?) and the flags in the compilation (CXXFLAGS=?)
+
+==============================================================================
+ Running Examples
+==============================================================================
+Before to continue, check that  you are using the correct Makefile.in  for your 
+system.
+
+The examples are divided into two categories:
+
+examples/interpolation
+examples/pde
+
+each folder has several folders
+
+examples/interpolation/1d
+         interpolation/2d
+         interpolation/3d
+         interpolation/nd  <- scattered data interpolation in any dimension with any RBF 
+
+examples/pde/advection
+         pde/allen-cahn
+         pde/burger
+         pde/circle        <- Poisson in the circle with analytical solution
+         pde/helmholtz
+         pde/poisson
+         pde/laplace
+         
+         
+Inside of each folder you only need to write in the shell:  
+
+make help
+
+and follow the given instructions.
+
+All the examples contain ascii outputs with the expected running outputs.
+
+
+==============================================================================
+ Author
+==============================================================================
+This work was proposed by the professor Pedro Gonzalez-Casanova, and provide me
+the theoretical background. See  http://www.dci.dgsca.unam.mx/pderbf
+
+Jose Antonio Munoz-Gomez
+jantoniomex@gmail.com
+University of Guadalajara
+Mexico
+2  Agosto  2009
+
+

@@ -1,0 +1,121 @@
+Testing the viscous Burger's equation
+
+RBF info: 
+ name           : TPS
+ beta factor    : 4
+ degree pol     : 3
+ min degree pol : 3
+Pol info: 
+ data dimension : 2
+ order          : 3
+ base elements  : 6
+
+total nodes    N  = 900
+interior nodes ni = 784
+boundary nodes nf = 116
+
+running the LU matrix factorization .... 
+running the simulation .... 
+t = 0.0100  max(u) = 0.9841  stept  = 0.0001   data/data100
+t = 0.0200  max(u) = 0.9835  stept  = 0.0001   data/data200
+t = 0.0300  max(u) = 0.9825  stept  = 0.0001   data/data300
+t = 0.0400  max(u) = 0.9719  stept  = 0.0001   data/data400
+t = 0.0500  max(u) = 0.9627  stept  = 0.0001   data/data500
+t = 0.0600  max(u) = 0.9699  stept  = 0.0001   data/data600
+t = 0.0700  max(u) = 0.9721  stept  = 0.0001   data/data700
+t = 0.0800  max(u) = 0.9677  stept  = 0.0001   data/data800
+t = 0.0900  max(u) = 0.9566  stept  = 0.0001   data/data900
+t = 0.1000  max(u) = 0.9384  stept  = 0.0001   data/data1000
+t = 0.1100  max(u) = 0.9373  stept  = 0.0001   data/data1100
+t = 0.1200  max(u) = 0.9514  stept  = 0.0001   data/data1200
+t = 0.1300  max(u) = 0.9337  stept  = 0.0001   data/data1300
+t = 0.1400  max(u) = 0.9943  stept  = 0.0001   data/data1400
+t = 0.1500  max(u) = 1.0093  stept  = 0.0001   data/data1500
+t = 0.1600  max(u) = 0.9743  stept  = 0.0001   data/data1600
+t = 0.1700  max(u) = 0.9150  stept  = 0.0001   data/data1700
+t = 0.1800  max(u) = 0.9006  stept  = 0.0001   data/data1800
+t = 0.1900  max(u) = 0.9272  stept  = 0.0001   data/data1900
+t = 0.2000  max(u) = 0.9119  stept  = 0.0001   data/data2000
+t = 0.2100  max(u) = 0.8969  stept  = 0.0001   data/data2100
+t = 0.2200  max(u) = 0.9560  stept  = 0.0001   data/data2200
+t = 0.2300  max(u) = 0.9570  stept  = 0.0001   data/data2300
+t = 0.2400  max(u) = 0.9166  stept  = 0.0001   data/data2400
+t = 0.2500  max(u) = 0.8581  stept  = 0.0001   data/data2500
+t = 0.2600  max(u) = 0.8002  stept  = 0.0001   data/data2600
+t = 0.2700  max(u) = 0.8103  stept  = 0.0001   data/data2700
+t = 0.2800  max(u) = 0.8127  stept  = 0.0001   data/data2800
+t = 0.2900  max(u) = 0.7940  stept  = 0.0001   data/data2900
+t = 0.3000  max(u) = 0.7925  stept  = 0.0001   data/data3000
+t = 0.3100  max(u) = 0.8267  stept  = 0.0001   data/data3100
+t = 0.3200  max(u) = 0.8268  stept  = 0.0001   data/data3200
+t = 0.3300  max(u) = 0.8030  stept  = 0.0001   data/data3300
+t = 0.3400  max(u) = 0.7673  stept  = 0.0001   data/data3400
+t = 0.3500  max(u) = 0.7294  stept  = 0.0001   data/data3500
+t = 0.3600  max(u) = 0.6952  stept  = 0.0001   data/data3600
+t = 0.3700  max(u) = 0.6831  stept  = 0.0001   data/data3700
+t = 0.3800  max(u) = 0.6846  stept  = 0.0001   data/data3800
+t = 0.3900  max(u) = 0.6760  stept  = 0.0001   data/data3900
+t = 0.4000  max(u) = 0.6619  stept  = 0.0001   data/data4000
+t = 0.4100  max(u) = 0.6772  stept  = 0.0001   data/data4100
+t = 0.4200  max(u) = 0.6863  stept  = 0.0001   data/data4200
+t = 0.4300  max(u) = 0.6816  stept  = 0.0001   data/data4300
+t = 0.4400  max(u) = 0.6680  stept  = 0.0001   data/data4400
+t = 0.4500  max(u) = 0.6499  stept  = 0.0001   data/data4500
+t = 0.4600  max(u) = 0.6306  stept  = 0.0001   data/data4600
+t = 0.4700  max(u) = 0.6121  stept  = 0.0001   data/data4700
+t = 0.4800  max(u) = 0.5956  stept  = 0.0001   data/data4800
+t = 0.4900  max(u) = 0.5814  stept  = 0.0001   data/data4900
+t = 0.5000  max(u) = 0.5715  stept  = 0.0001   data/data5000
+t = 0.5100  max(u) = 0.5683  stept  = 0.0001   data/data5100
+t = 0.5200  max(u) = 0.5623  stept  = 0.0001   data/data5200
+t = 0.5300  max(u) = 0.5549  stept  = 0.0001   data/data5300
+t = 0.5400  max(u) = 0.5604  stept  = 0.0001   data/data5400
+t = 0.5500  max(u) = 0.5628  stept  = 0.0001   data/data5500
+t = 0.5600  max(u) = 0.5603  stept  = 0.0001   data/data5600
+t = 0.5700  max(u) = 0.5546  stept  = 0.0001   data/data5700
+t = 0.5800  max(u) = 0.5469  stept  = 0.0001   data/data5800
+t = 0.5900  max(u) = 0.5383  stept  = 0.0001   data/data5900
+t = 0.6000  max(u) = 0.5295  stept  = 0.0001   data/data6000
+t = 0.6100  max(u) = 0.5210  stept  = 0.0001   data/data6100
+t = 0.6200  max(u) = 0.5129  stept  = 0.0001   data/data6200
+t = 0.6300  max(u) = 0.5053  stept  = 0.0001   data/data6300
+t = 0.6400  max(u) = 0.4983  stept  = 0.0001   data/data6400
+t = 0.6500  max(u) = 0.4918  stept  = 0.0001   data/data6500
+t = 0.6600  max(u) = 0.4857  stept  = 0.0001   data/data6600
+t = 0.6700  max(u) = 0.4799  stept  = 0.0001   data/data6700
+t = 0.6800  max(u) = 0.4744  stept  = 0.0001   data/data6800
+t = 0.6900  max(u) = 0.4691  stept  = 0.0001   data/data6900
+t = 0.7000  max(u) = 0.4651  stept  = 0.0001   data/data7000
+t = 0.7100  max(u) = 0.4654  stept  = 0.0001   data/data7100
+t = 0.7200  max(u) = 0.4641  stept  = 0.0001   data/data7200
+t = 0.7300  max(u) = 0.4618  stept  = 0.0001   data/data7300
+t = 0.7400  max(u) = 0.4586  stept  = 0.0001   data/data7400
+t = 0.7500  max(u) = 0.4550  stept  = 0.0001   data/data7500
+t = 0.7600  max(u) = 0.4510  stept  = 0.0001   data/data7600
+t = 0.7700  max(u) = 0.4468  stept  = 0.0001   data/data7700
+t = 0.7800  max(u) = 0.4426  stept  = 0.0001   data/data7800
+t = 0.7900  max(u) = 0.4384  stept  = 0.0001   data/data7900
+t = 0.8000  max(u) = 0.4343  stept  = 0.0001   data/data8000
+t = 0.8100  max(u) = 0.4301  stept  = 0.0001   data/data8100
+t = 0.8200  max(u) = 0.4260  stept  = 0.0001   data/data8200
+t = 0.8300  max(u) = 0.4220  stept  = 0.0001   data/data8300
+t = 0.8400  max(u) = 0.4181  stept  = 0.0001   data/data8400
+t = 0.8500  max(u) = 0.4142  stept  = 0.0001   data/data8500
+t = 0.8600  max(u) = 0.4104  stept  = 0.0001   data/data8600
+t = 0.8700  max(u) = 0.4066  stept  = 0.0001   data/data8700
+t = 0.8800  max(u) = 0.4028  stept  = 0.0001   data/data8800
+t = 0.8900  max(u) = 0.3991  stept  = 0.0001   data/data8900
+t = 0.9000  max(u) = 0.3954  stept  = 0.0001   data/data9000
+t = 0.9100  max(u) = 0.3917  stept  = 0.0001   data/data9100
+t = 0.9200  max(u) = 0.3885  stept  = 0.0001   data/data9200
+t = 0.9300  max(u) = 0.3872  stept  = 0.0001   data/data9300
+t = 0.9400  max(u) = 0.3856  stept  = 0.0001   data/data9400
+t = 0.9500  max(u) = 0.3837  stept  = 0.0001   data/data9500
+t = 0.9600  max(u) = 0.3816  stept  = 0.0001   data/data9600
+t = 0.9700  max(u) = 0.3794  stept  = 0.0001   data/data9700
+t = 0.9800  max(u) = 0.3771  stept  = 0.0001   data/data9800
+t = 0.9900  max(u) = 0.3747  stept  = 0.0001   data/data9900
+t = 1.0000  max(u) = 0.3722  stept  = 0.0001   data/data10000
+
+Elapsed time (loop) = 78.8177  sec
+

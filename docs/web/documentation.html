@@ -1,0 +1,511 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head>
+	<meta http-equiv="content-type" content="text/html; charset=utf-8" />
+	<meta name="description" content="Your description goes here" />
+	<meta name="keywords" content="thin-plate splines, multiquadric, interpolation, meshless" />
+	<meta name="author" content="Jose Antonio Munoz Gomez" />
+	<link rel="stylesheet" type="text/css" href="andreas08.css" title="andreas08" media="screen,projection" />
+	<title>Radial++</title>
+</head>
+
+<body>
+<div id="container" >
+	<div id="header">
+		<h1>Radial++</h1>
+	</div>
+
+	<div id="navigation">
+		<ul>
+			<li><a href="index.html">Introduction</a></li>
+			<li><a href="download.html">Download</a></li>
+			<li class="selected"><a href="documentation.html">Documentation</a></li>
+			<li><a href="interpolation.html">Interpolation</a></li>
+			<li><a href="pdes.html">PDEs</a></li>
+			<li><a href="future.html">Future</a></li>
+			<li><a href="r2s.html">R2S</a></li>
+		</ul>
+     </div>
+
+
+<div id="content" style="text-align: justify">
+  <p>
+     The documentation is still in infancy, however we provide a few documents in pdf
+     for quick description. All the provided examples in Radial++ contain lots of
+     explanations in each function, please see the examples.
+  </p>
+    
+  <h4>Quick References</h4>
+  		<ul class="menublock">
+  		    <li><a href="quick_radial.pdf">Radial Basis Functions</a></li>
+			<li><a href="quick_pol.pdf">Poynomial</a></li>
+			<li><a href="quick_solver.pdf">LU Solver</a></li>
+		</ul> 
+ 
+ 
+ 
+ <h4>RBFs Evaluations</h4>
+ 
+ <p>
+   We are working more in C style, but using templates. In the
+   forthcoming release we are going to incorporate the template functions
+   which can be used in any external C++ program or others librarys to
+   perform the evaluaions of radial basis functions with global support.
+ </p>
+ 
+ <h4>Thin-Plate Splines</h4>
+ <table class="category-table"  frame="border">
+ <tr class="category-table-tr-2">
+ <td class="category-table-td"><a>tps_1d </a></td> 
+ <td class="category-table-td">evalution for 1d</td> </tr>
+
+ <tr class="category-table-tr-1">
+ <td class="category-table-td"><a>tps_2d</a></td> 
+ <td class="category-table-td">evaluation for 2d</td> </tr>
+
+ <tr class="category-table-tr-2">
+ <td class="category-table-td"><a>tps_3d</a></td> 
+ <td class="category-table-td">evaluation for 3d</td> </tr>
+
+ <tr class="category-table-tr-1">
+ <td class="category-table-td"><a>tps_nd</a></td> 
+ <td class="category-table-td">evaluation for nd</td> </tr>
+ 
+ </table> <br>
+
+ <h4>Power Splines</h4>
+ <table class="category-table"  frame="border">
+ <tr class="category-table-tr-2">
+ <td class="category-table-td"><a>pot_1d</a></td> 
+ <td class="category-table-td">evaluation for 1d</td> </tr>
+ 
+ <tr class="category-table-tr-1">
+ <td class="category-table-td"><a>pot_2d</a></td> 
+ <td class="category-table-td">evaluation for 2d</td> </tr>
+ 
+ 
+ <tr class="category-table-tr-2">
+ <td class="category-table-td"><a>pot_3d</a></td> 
+ <td class="category-table-td">evaluation for 3d</td> </tr>
+ 
+ <tr class="category-table-tr-1">
+ <td class="category-table-td"><a>pot_nd</a></td> 
+ <td class="category-table-td">evaluation for nd</td> </tr>
+ 
+  </table> <br>
+ 
+ <h4>Gaussian</h4>
+ <table class="category-table"  frame="border">
+ <tr class="category-table-tr-2">
+ <td class="category-table-td"><a>gau_1d</a></td> 
+ <td class="category-table-td">evaluation for 1d</td> </tr>
+
+ <tr class="category-table-tr-1">
+ <td class="category-table-td"><a>gau_2d</a></td> 
+ <td class="category-table-td">evaluation for 2d</td> </tr>
+ 
+ <tr class="category-table-tr-2">
+ <td class="category-table-td"><a>gau_3d</a></td> 
+ <td class="category-table-td">evaluation for 3d</td> </tr> 
+ 
+ <tr class="category-table-tr-1">
+ <td class="category-table-td"><a>gau_nd</a></td> 
+ <td class="category-table-td">evaluation for nd</td> </tr>
+ </table> <br>
+   
+   
+ <h4>Multiquadric</h4>   
+ <table class="category-table"  frame="border">
+ <tr class="category-table-tr-2">
+ <td class="category-table-td"><a>mq_1d</a></td> 
+ <td class="category-table-td">evaluation for 1d</td> </tr>
+ 
+ <tr class="category-table-tr-1">
+ <td class="category-table-td"><a>mq_2d</a></td> 
+ <td class="category-table-td">evaluation for 2d</td> </tr> 
+ 
+ <tr class="category-table-tr-2">
+ <td class="category-table-td"><a>mq_2d</a></td> 
+ <td class="category-table-td">evaluation for 2d</td> </tr>
+ 
+ <tr class="category-table-tr-1">
+ <td class="category-table-td"><a>mq_nd</a></td> 
+ <td class="category-table-td">evaluation for nd</td> </tr> 
+ </table> <br>
+
+ <h4>Inverse Multiquadric</h4>
+ <table class="category-table"  frame="border">
+ <tr class="category-table-tr-2">
+ <td class="category-table-td"><a>imq_1d</a></td> 
+ <td class="category-table-td">evaluation for 1d</td> </tr>
+ 
+ <tr class="category-table-tr-1">
+ <td class="category-table-td"><a>imq_2d</a></td> 
+ <td class="category-table-td">evaluation for 2d</td> </tr> 
+
+ <tr class="category-table-tr-2">
+ <td class="category-table-td"><a>imq_3d</a></td> 
+ <td class="category-table-td">evaluation for 3d</td> </tr>
+ 
+ <tr class="category-table-tr-1">
+ <td class="category-table-td"><a>imq_nd</a></td> 
+ <td class="category-table-td">evaluation for nd</td> </tr>   
+ </table> <br>
+ 
+ 
+ 
+ 
+ 
+
+
+ <h4>RBFs Derivatives</h4>
+ 
+ <p>
+   We are working more in C style, but using templates. In the
+   forthcoming release we are going to incorporate the template functions
+   which can be used in any external C++ program or others librarys to
+   perform the derivatives of radial basis functions with global support.
+ </p>
+ 
+ <h4>Thin-Plate Splines</h4>
+ <table class="category-table"  frame="border">
+ <tr class="category-table-tr-2">
+ <td class="category-table-td"><a>tps_1d_x </a></td> 
+ <td class="category-table-td">1st derivative with respect to x for 1D</td> </tr>
+
+ <tr class="category-table-tr-1">
+ <td class="category-table-td"><a>tps_1d_xx</a></td> 
+ <td class="category-table-td">2nd derivative with respect to x for 1D</td> </tr>
+
+ <tr class="category-table-tr-2">
+ <td class="category-table-td"><a>tps_2d_x</a></td> 
+ <td class="category-table-td"> 1st derivative with respect to x for 2D</td> </tr>
+
+ <tr class="category-table-tr-1">
+ <td class="category-table-td"><a>tps_2d_y</a></td> 
+ <td class="category-table-td"> 1st derivative with respect to y for 2D</td> </tr>
+
+ <tr class="category-table-tr-2">
+ <td class="category-table-td"><a>tps_2d_xx</a></td> 
+ <td class="category-table-td"> 2nd derivative with respect to x for 2D</td> </tr>
+ 
+ <tr class="category-table-tr-1">
+ <td class="category-table-td"><a>tps_2d_yy</a></td> 
+ <td class="category-table-td">2nd derivative with respect to y for 2D</td> </tr>
+ 
+ 
+ <tr class="category-table-tr-2">
+ <td class="category-table-td"><a>tps_2d_xy</a></td> 
+ <td class="category-table-td"> 2nd derivative with respect to xy for 2D</td> </tr>
+ 
+ <tr class="category-table-tr-1">
+ <td class="category-table-td"><a>tps_2d_yx</a></td> 
+ <td class="category-table-td"> 2nd derivative with respect to yx for 2D</td> </tr>
+ 
+ <tr class="category-table-tr-2">
+ <td class="category-table-td"><a>tps_3d_x</a></td> 
+ <td class="category-table-td"> 1st derivative with respect to x for 3D</td> </tr>
+
+ <tr class="category-table-tr-1">
+ <td class="category-table-td"><a>tps_3d_y</a></td> 
+ <td class="category-table-td"> 1st derivative with respect to y for 3D</td> </tr>
+ 
+ <tr class="category-table-tr-2">
+ <td class="category-table-td"><a>tps_3d_z</a></td> 
+ <td class="category-table-td">1st derivative with respect to z for 3D</td> </tr> 
+ 
+ 
+ <tr class="category-table-tr-1">
+ <td class="category-table-td"><a>tps_3d_xx</a></td> 
+ <td class="category-table-td"> 2nd derivative with respect to x for 3D</td> </tr>
+
+ <tr class="category-table-tr-2">
+ <td class="category-table-td"><a>tps_3d_yy</a></td> 
+ <td class="category-table-td"> 2nd derivative with respect to y for 3D</td> </tr>
+ 
+ <tr class="category-table-tr-1">
+ <td class="category-table-td"><a>tps_3d_zz</a></td> 
+ <td class="category-table-td">2nd derivative with respect to z for 3D</td> </tr> 
+ 
+</table>
+<br>
+
+
+
+ <h4>Power Splines</h4>
+ <table class="category-table"  frame="border">
+ <tr class="category-table-tr-2">
+ 
+ <td class="category-table-td"><a>pot_1d_x </a></td> 
+ <td class="category-table-td">1st derivative with respect to x for 1D</td> </tr>
+ <tr class="category-table-tr-1">
+ 
+ <td class="category-table-td"><a>pot_1d_xx</a></td> 
+ <td class="category-table-td">2nd derivative with respect to x for 1D</td> </tr>
+
+ <tr class="category-table-tr-2">
+ <td class="category-table-td"><a>pot_2d_x</a></td> 
+ <td class="category-table-td"> 1st derivative with respect to x for 2D</td> </tr>
+
+ <tr class="category-table-tr-1">
+ <td class="category-table-td"><a>pot_2d_y</a></td> 
+ <td class="category-table-td"> 1st derivative with respect to y for 2D</td> </tr>
+
+ <tr class="category-table-tr-2">
+ <td class="category-table-td"><a>pot_2d_xx</a></td> 
+ <td class="category-table-td"> 2nd derivative with respect to x for 2D</td> </tr>
+ 
+ <tr class="category-table-tr-1">
+ <td class="category-table-td"><a>pot_2d_yy</a></td> 
+ <td class="category-table-td">2nd derivative with respect to y for 2D</td> </tr>
+ 
+ <tr class="category-table-tr-2">
+ <td class="category-table-td"><a>pot_2d_xy</a></td> 
+ <td class="category-table-td"> 2nd derivative with respect to xy for 2D</td> </tr>
+ 
+ <tr class="category-table-tr-1">
+ <td class="category-table-td"><a>pot_2d_yx</a></td> 
+ <td class="category-table-td"> 2nd derivative with respect to yx for 2D</td> </tr>
+ 
+ <tr class="category-table-tr-2">
+ <td class="category-table-td"><a>pot_3d_x</a></td> 
+ <td class="category-table-td"> 1st derivative with respect to x for 3D</td> </tr>
+
+ <tr class="category-table-tr-1">
+ <td class="category-table-td"><a>pot_3d_y</a></td> 
+ <td class="category-table-td"> 1st derivative with respect to y for 3D</td> </tr>
+ 
+ <tr class="category-table-tr-2">
+ <td class="category-table-td"><a>pot_3d_z</a></td> 
+ <td class="category-table-td">1st derivative with respect to z for 3D</td> </tr> 
+ 
+ 
+ <tr class="category-table-tr-1">
+ <td class="category-table-td"><a>pot_3d_xx</a></td> 
+ <td class="category-table-td"> 2nd derivative with respect to x for 3D</td> </tr>
+
+ <tr class="category-table-tr-2">
+ <td class="category-table-td"><a>pot_3d_yy</a></td> 
+ <td class="category-table-td"> 2nd derivative with respect to y for 3D</td> </tr>
+ 
+ <tr class="category-table-tr-1">
+ <td class="category-table-td"><a>pot_3d_zz</a></td> 
+ <td class="category-table-td">2nd derivative with respect to z for 3D</td> </tr> 
+ 
+</table>
+<br>
+
+
+
+
+
+ <h4>Gaussian</h4>
+ <table class="category-table"  frame="border">
+ <tr class="category-table-tr-2">
+ 
+ <td class="category-table-td"><a>gau_1d_x </a></td> 
+ <td class="category-table-td">1st derivative with respect to x for 1D</td> </tr>
+ <tr class="category-table-tr-1">
+ 
+ <td class="category-table-td"><a>gau_1d_xx</a></td> 
+ <td class="category-table-td">2nd derivative with respect to x for 1D</td> </tr>
+
+ <tr class="category-table-tr-2">
+ <td class="category-table-td"><a>gau_2d_x</a></td> 
+ <td class="category-table-td"> 1st derivative with respect to x for 2D</td> </tr>
+
+ <tr class="category-table-tr-1">
+ <td class="category-table-td"><a>gau_2d_y</a></td> 
+ <td class="category-table-td"> 1st derivative with respect to y for 2D</td> </tr>
+
+ <tr class="category-table-tr-2">
+ <td class="category-table-td"><a>gau_2d_xx</a></td> 
+ <td class="category-table-td"> 2nd derivative with respect to x for 2D</td> </tr>
+ 
+ <tr class="category-table-tr-1">
+ <td class="category-table-td"><a>gau_2d_yy</a></td> 
+ <td class="category-table-td">2nd derivative with respect to y for 2D</td> </tr>
+ 
+ <tr class="category-table-tr-2">
+ <td class="category-table-td"><a>gau_2d_xy</a></td> 
+ <td class="category-table-td"> 2nd derivative with respect to xy for 2D</td> </tr>
+ 
+ <tr class="category-table-tr-1">
+ <td class="category-table-td"><a>gau_2d_yx</a></td> 
+ <td class="category-table-td"> 2nd derivative with respect to yx for 2D</td> </tr> 
+
+ 
+ <tr class="category-table-tr-2">
+ <td class="category-table-td"><a>gau_3d_x</a></td> 
+ <td class="category-table-td"> 1st derivative with respect to x for 3D</td> </tr>
+
+ <tr class="category-table-tr-1">
+ <td class="category-table-td"><a>gau_3d_y</a></td> 
+ <td class="category-table-td"> 1st derivative with respect to y for 3D</td> </tr>
+ 
+ <tr class="category-table-tr-2">
+ <td class="category-table-td"><a>gau_3d_z</a></td> 
+ <td class="category-table-td">1st derivative with respect to z for 3D</td> </tr> 
+ 
+ 
+ <tr class="category-table-tr-1">
+ <td class="category-table-td"><a>gau_3d_xx</a></td> 
+ <td class="category-table-td"> 2nd derivative with respect to x for 3D</td> </tr>
+
+ <tr class="category-table-tr-2">
+ <td class="category-table-td"><a>gau_3d_yy</a></td> 
+ <td class="category-table-td"> 2nd derivative with respect to y for 3D</td> </tr>
+ 
+ <tr class="category-table-tr-1">
+ <td class="category-table-td"><a>gau_3d_zz</a></td> 
+ <td class="category-table-td">2nd derivative with respect to z for 3D</td> </tr> 
+ 
+</table>
+<br>
+
+
+
+
+
+ <h4>Multiquadric</h4>
+ <table class="category-table"  frame="border">
+ <tr class="category-table-tr-2">
+ 
+ <td class="category-table-td"><a>mq_1d_x </a></td> 
+ <td class="category-table-td">1st derivative with respect to x for 1D</td> </tr>
+ <tr class="category-table-tr-1">
+ 
+ <td class="category-table-td"><a>mq_1d_xx</a></td> 
+ <td class="category-table-td">2nd derivative with respect to x for 1D</td> </tr>
+
+ <tr class="category-table-tr-2">
+ <td class="category-table-td"><a>mq_2d_x</a></td> 
+ <td class="category-table-td"> 1st derivative with respect to x for 2D</td> </tr>
+
+ <tr class="category-table-tr-1">
+ <td class="category-table-td"><a>mq_2d_y</a></td> 
+ <td class="category-table-td"> 1st derivative with respect to y for 2D</td> </tr>
+
+ <tr class="category-table-tr-2">
+ <td class="category-table-td"><a>mq_2d_xx</a></td> 
+ <td class="category-table-td"> 2nd derivative with respect to x for 2D</td> </tr>
+ 
+ <tr class="category-table-tr-1">
+ <td class="category-table-td"><a>mq_2d_yy</a></td> 
+ <td class="category-table-td">2nd derivative with respect to y for 2D</td> </tr>
+ 
+ <tr class="category-table-tr-2">
+ <td class="category-table-td"><a>mq_2d_xy</a></td> 
+ <td class="category-table-td"> 2nd derivative with respect to xy for 2D</td> </tr>
+ 
+ <tr class="category-table-tr-1">
+ <td class="category-table-td"><a>mq_2d_yx</a></td> 
+ <td class="category-table-td"> 2nd derivative with respect to yx for 2D</td> </tr> 
+
+ 
+ <tr class="category-table-tr-2">
+ <td class="category-table-td"><a>mq_3d_x</a></td> 
+ <td class="category-table-td"> 1st derivative with respect to x for 3D</td> </tr>
+
+ <tr class="category-table-tr-1">
+ <td class="category-table-td"><a>mq_3d_y</a></td> 
+ <td class="category-table-td"> 1st derivative with respect to y for 3D</td> </tr>
+ 
+ <tr class="category-table-tr-2">
+ <td class="category-table-td"><a>mq_3d_z</a></td> 
+ <td class="category-table-td">1st derivative with respect to z for 3D</td> </tr> 
+ 
+ 
+ <tr class="category-table-tr-1">
+ <td class="category-table-td"><a>mq_3d_xx</a></td> 
+ <td class="category-table-td"> 2nd derivative with respect to x for 3D</td> </tr>
+
+ <tr class="category-table-tr-2">
+ <td class="category-table-td"><a>mq_3d_yy</a></td> 
+ <td class="category-table-td"> 2nd derivative with respect to y for 3D</td> </tr>
+ 
+ <tr class="category-table-tr-1">
+ <td class="category-table-td"><a>mq_3d_zz</a></td> 
+ <td class="category-table-td">2nd derivative with respect to z for 3D</td> </tr> 
+ 
+</table>
+<br>
+
+
+
+
+
+ <h4>Inverse Multiquadric</h4>
+ <table class="category-table"  frame="border">
+ <tr class="category-table-tr-2">
+ 
+ <td class="category-table-td"><a>imq_1d_x </a></td> 
+ <td class="category-table-td">1st derivative with respect to x for 1D</td> </tr>
+ <tr class="category-table-tr-1">
+ 
+ <td class="category-table-td"><a>imq_1d_xx</a></td> 
+ <td class="category-table-td">2nd derivative with respect to x for 1D</td> </tr>
+
+ <tr class="category-table-tr-2">
+ <td class="category-table-td"><a>imq_2d_x</a></td> 
+ <td class="category-table-td"> 1st derivative with respect to x for 2D</td> </tr>
+
+ <tr class="category-table-tr-1">
+ <td class="category-table-td"><a>imq_2d_y</a></td> 
+ <td class="category-table-td"> 1st derivative with respect to y for 2D</td> </tr>
+
+ <tr class="category-table-tr-2">
+ <td class="category-table-td"><a>imq_2d_xx</a></td> 
+ <td class="category-table-td"> 2nd derivative with respect to x for 2D</td> </tr>
+ 
+ <tr class="category-table-tr-1">
+ <td class="category-table-td"><a>imq_2d_yy</a></td> 
+ <td class="category-table-td">2nd derivative with respect to y for 2D</td> </tr>
+ 
+ <tr class="category-table-tr-2">
+ <td class="category-table-td"><a>imq_2d_xy</a></td> 
+ <td class="category-table-td"> 2nd derivative with respect to xy for 2D</td> </tr>
+ 
+ <tr class="category-table-tr-1">
+ <td class="category-table-td"><a>imq_2d_yx</a></td> 
+ <td class="category-table-td"> 2nd derivative with respect to yx for 2D</td> </tr> 
+ 
+ <tr class="category-table-tr-2">
+ <td class="category-table-td"><a>imq_3d_x</a></td> 
+ <td class="category-table-td"> 1st derivative with respect to x for 3D</td> </tr>
+
+ <tr class="category-table-tr-1">
+ <td class="category-table-td"><a>imq_3d_y</a></td> 
+ <td class="category-table-td"> 1st derivative with respect to y for 3D</td> </tr>
+ 
+ <tr class="category-table-tr-2">
+ <td class="category-table-td"><a>imq_3d_z</a></td> 
+ <td class="category-table-td">1st derivative with respect to z for 3D</td> </tr> 
+ 
+ 
+ <tr class="category-table-tr-1">
+ <td class="category-table-td"><a>imq_3d_xx</a></td> 
+ <td class="category-table-td"> 2nd derivative with respect to x for 3D</td> </tr>
+
+ <tr class="category-table-tr-2">
+ <td class="category-table-td"><a>imq_3d_yy</a></td> 
+ <td class="category-table-td"> 2nd derivative with respect to y for 3D</td> </tr>
+ 
+ <tr class="category-table-tr-1">
+ <td class="category-table-td"><a>imq_3d_zz</a></td> 
+ <td class="category-table-td">2nd derivative with respect to z for 3D</td> </tr> 
+ 
+</table>
+<br>
+
+The name descriptions of the derivatives was taken from TUNA:RBF, not the implementations.
+
+
+</div>
+
+	<div id="footer">
+		<p>&copy; 2009 J. Antonio Mu&ntilde;oz-G&oacute;mez</p>
+	</div>
+</div>
+</body>
+</html>

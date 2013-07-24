@@ -1,0 +1,94 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head>
+	<meta http-equiv="content-type" content="text/html; charset=utf-8" />
+	<meta name="description" content="Your description goes here" />
+	<meta name="keywords" content="multiquadric, interpolation, radial basis functions, unsymmetric method, meshless, scattered data interpolation" />
+	<meta name="author" content="Jose Antonio Munoz Gomez" />
+	<link rel="stylesheet" type="text/css" href="andreas08.css" title="andreas08" media="screen,projection" />
+	<title>Radial++</title>
+</head>
+
+<body>
+<div id="container" >
+
+	<div id="header">
+		<h1>Radial++</h1>
+	</div>
+
+	<div id="navigation">
+		<ul>
+			<li class="selected"><a href="#">Introduction</a></li>
+			<li><a href="download.html">Download</a></li>
+			<li><a href="documentation.html">Documentation</a></li>
+			<li><a href="interpolation.html">Interpolation</a></li>
+			<li><a href="pdes.html">PDEs</a></li>
+			<li><a href="future.html">Future</a></li>
+			<li><a href="r2s.html">R2S</a></li>
+		</ul>
+     </div>
+
+	<div id="content" style="text-align: justify">
+
+
+		<p> Radial++ is a C++ library  for the numerical solution 
+             of partial differential equations (no weak solutions) and the interpolation
+            of scattered data by Radial Basis Functions (RBFs).
+        </p>    
+
+
+         <p> Radial++ works with generalized RBFs, like thin-plate splines, power splines,
+             Gaussian, multiquadrics and inverse multiquadrics. This means that you can
+             configurate the RBF to work with any degree of the associated polynomial
+             to the RBF and also, you can choose the free exponent in the generalized RBF.
+          </p>
+          
+          <p>  
+             In particular, we can interpolate scattered data in any dimension  (explicit surface), 
+             and also, the library
+             provides several examples for numerical solution of partial differential
+             equations by the unsymmetric collocation method.
+          </p>
+
+          <p>
+              Radial++ is part of the project Radial Basis Functions Methods for the
+              Numerical Solution of Partial Differential Equations coordinated by 
+              professor Pedro Gonzalez-Casanova, see 
+              <a href="http://www.dci.dgsca.unam.mx/pderbf/">pderbf</a>.
+              This work was proposed by Gonzalez-Casanova, and he provides
+              the theoretical background. This work is partially based on the ideas and previous works 
+              called RBF++ and TUNA:RBF developed by Daniel Cervantes and Luis M. de la Cruz respectively. 
+          </p> 
+          
+
+        
+	</div>
+
+
+    <div id="subcontent">
+    <div class="small box">
+
+	   <strong>New: </strong> <br> 
+	    In release 0.1.0 will incorporate parallel programming
+	    by openmp instructions in the matrix-vector multiplication: A*x <br>
+	    see examples/omp
+	</div>
+	
+    <div class="small box">
+
+	   <strong>Forthcoming: </strong> <br> 
+	    We started the new design to add new features, like more flexibily in
+	    the construction of the matrix derivatives, and much more.
+	</div>
+    </div>
+
+
+
+
+	<div id="footer">
+		<p>&copy; 2009 J. Antonio Mu&ntilde;oz-G&oacute;mez | Design by Stylish <a href="http://www.stylishtemplate.com/">Website Templates</a></p>
+    </div>
+
+</div>
+</body>
+</html>

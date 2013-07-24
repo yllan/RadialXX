@@ -1,0 +1,10 @@
+
+
+reset
+set dgrid3d 30,30
+set hidden3d
+
+set ticslevel 0
+set title "Viscous Burger's"
+splot 'datan'  with lines
+

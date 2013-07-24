@@ -1,0 +1,42 @@
+./eje1rbfs <op>
+       op = 1  use TPS thin-plate-spline r^2 log r
+       op = 2  use POT  r^3
+
+with op = 1
+
+RBF info: 
+ name           : TPS
+ beta factor    : 2
+ degree pol     : 2
+ min degree pol : 2
+Pol info: 
+ data dimension : 1
+ order          : 2
+ base elements  : 2
+
+condition number = 2.648194e+04
+Testing 1-d interpolation
+ f(x) = sin(x)
+we build the interpolation with n-centers = 20
+determine the error in 2*n centers = 40
+e_max = 0.00586882
+
+
+with op = 2
+
+RBF info: 
+ name           : POT
+ beta factor    : 3
+ degree pol     : 2
+ min degree pol : 2
+Pol info: 
+ data dimension : 1
+ order          : 2
+ base elements  : 2
+
+condition number = 3.227720e+05
+Testing 1-d interpolation
+ f(x) = sin(x)
+we build the interpolation with n-centers = 20
+determine the error in 2*n centers = 40
+e_max = 2.87135e-05

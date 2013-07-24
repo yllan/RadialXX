@@ -1,0 +1,44 @@
+Testing the advection equation
+
+RBF info: 
+ name           : TPS
+ beta factor    : 4
+ degree pol     : 3
+ min degree pol : 3
+Pol info: 
+ data dimension : 2
+ order          : 3
+ base elements  : 6
+
+total nodes    N  = 900
+interior nodes ni = 784
+boundary nodes nf = 116
+
+running the LU matrix factorization .... 
+condition number = 2.853575e+09
+running the simulation .... 
+t = 0.0100  max(u) = 1.0003  stept  = 0.0001   data/data100
+t = 0.0200  max(u) = 0.9652  stept  = 0.0001   data/data200
+t = 0.0300  max(u) = 0.9141  stept  = 0.0001   data/data300
+t = 0.0400  max(u) = 0.9904  stept  = 0.0001   data/data400
+t = 0.0500  max(u) = 0.9921  stept  = 0.0001   data/data500
+t = 0.0600  max(u) = 0.9181  stept  = 0.0001   data/data600
+t = 0.0700  max(u) = 0.9635  stept  = 0.0001   data/data700
+t = 0.0800  max(u) = 1.0015  stept  = 0.0001   data/data800
+t = 0.0900  max(u) = 0.9621  stept  = 0.0001   data/data900
+t = 0.1000  max(u) = 0.9219  stept  = 0.0001   data/data1000
+t = 0.1100  max(u) = 0.9935  stept  = 0.0001   data/data1100
+t = 0.1200  max(u) = 0.9904  stept  = 0.0001   data/data1200
+t = 0.1300  max(u) = 0.9120  stept  = 0.0001   data/data1300
+t = 0.1400  max(u) = 0.9691  stept  = 0.0001   data/data1400
+t = 0.1500  max(u) = 1.0019  stept  = 0.0001   data/data1500
+t = 0.1600  max(u) = 0.9576  stept  = 0.0001   data/data1600
+t = 0.1700  max(u) = 0.9299  stept  = 0.0001   data/data1700
+t = 0.1800  max(u) = 0.9963  stept  = 0.0001   data/data1800
+t = 0.1900  max(u) = 0.9880  stept  = 0.0001   data/data1900
+t = 0.2000  max(u) = 0.9047  stept  = 0.0001   data/data2000
+
+Elapsed time (loop) = 11.2557 sec
+
+
+The maximum error: e_max = 0.0156652

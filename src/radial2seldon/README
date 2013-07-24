@@ -1,0 +1,106 @@
+/***************************************************************************
+ *
+ * Copyright (C) 2009   Jose Antonio Munoz Gomez
+ *        
+ * This file is part of Radial++
+ * http://sourceforge.net/projects/radial/
+ *
+ * Radial++ is free software; you can redistribute it and/or
+ * modify it under the terms of the GNU General Public License
+ * as published by the Free Software Foundation; either version 3
+ * of the License, or (at your option) any later version.
+ *
+ * Radial++ is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ *
+ * For more information, please see the  Home Page:
+ *    http://www.dci.dgsca.unam.mx/pderbf
+ *
+ ***************************************************************************/
+ 
+                       Radial to  Seldon
+                             R2S
+                         version 0.1.2
+ 
+   This file has been written to Radial++ with the spirit to incorporate
+   the classical overloaded operators between vectors and matrices
+   in the library called Seldon.
+  
+   The original idea of this functions was taken from Blitz and suggested 
+   by Vivien Mallet.
+   
+   This is a naive implementation, further work to diminish this drawback
+   are undertaken by the authors of Seldon and Radial++.
+  
+
+
+The functions provided are:
+
+       Vector <-- function ( Vector ) 
+     
+       Matrix <-- function ( Matrix ) 
+
+where Vector and Matrix are declared by Vector<T> and 
+Matrix<T>, that is, a full-storage, RowMajor.
+
+The provided 'function' are:
+
+   sin  cos  tan  acos  asin  atan
+   cosh sinh tanh
+   exp  log  log10
+   sqrt 
+   ceil fabs floor
+    
+in addition, to perform power function by using and integer
+as second argument, we have 
+
+   pow2  pow3  pow4  pow5  pow6  pow7  pow8
+
+The power function (pow(x,y)) applied at each element of the
+Vector or Matrix are overloaded by the operator ^
+
+
+       Vector <-- Vector^T 
+     
+       Matrix <-- Matrix^T
+       
+this is similar to use the operator '.^' in Octave or Matlab.        
+
+
+
+The overloaded arithmetic operators for Vector and Matrices are:
+
+
+        Vector <--  Vector op T
+        Vector <--    T    op Vector
+        Matrix <--  Matrix op T
+        Matrix <--    T    op Matrix
+   
+where op = +, -, *  and  T  = scalar
+
+Also, the classical operators
+        Vector <--  Vector +/- Vector
+        Matrix <--  Matrix +/- Matrix
+         
+Finally, three more especific functions
+
+       Vector <-- pdot(Vector,Vector)
+                  similar to '.*' in Matlab
+
+       Vector <-- Matrix * Vector 
+
+       Matrix  <--  Matrix * Matrix 
+       
+       
+Note: if is defined the macro
+
+             #define RADIAL_WITH_C_CODE       
+      
+      the above functions use the hand code C implementation developed 
+      by the author of Radial, in otherwise, we call the functions 
+      provided by the author of Seldon.
+      
+#endif //_MATH_FUNCTIONS_HPP_
+

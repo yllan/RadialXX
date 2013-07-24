@@ -1,0 +1,103 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head>
+	<meta http-equiv="content-type" content="text/html; charset=utf-8" />
+	<meta name="description" content="Your description goes here" />
+	<meta name="keywords" content="power splines, meshless, Kansa method" />
+	<meta name="author" content="Jose Antonio Munoz Gomez" />
+	<link rel="stylesheet" type="text/css" href="andreas08.css" title="andreas08" media="screen,projection" />
+	<title>Radial++</title>
+</head>
+
+<body>
+<div id="container" >
+	<div id="header">
+		<h1>Radial++</h1>
+	</div>
+
+	<div id="navigation">
+		<ul>
+			<li><a href="index.html">Introduction</a></li>
+			<li class="selected"><a href="download.html">Download</a></li>
+			<li><a href="documentation.html">Documentation</a></li>
+			<li><a href="interpolation.html">Interpolation</a></li>
+			<li><a href="pdes.html">PDEs</a></li>
+			<li><a href="future.html">Future</a></li>
+			<li><a href="r2s.html">R2S</a></li>
+		</ul>
+     </div>
+
+	
+	<div id="content" style="text-align: justify">
+
+        <h4>Download</h4>
+      <p>
+          This library is an alpha version, thus is through testing and not every possible case has been covered yet. 
+           If you find a bug,  we really appreciate to hear about it. jantoniomex at gmail dot com
+      </p>
+      
+      <p>
+         Last release in the repository of Sourceforge: <a href="https://sourceforge.net/projects/radial/">Radial++</a>
+      </p>
+      
+      <p>
+         Radial++ is provided under the GNU LGPL (Lesser General Public License).
+      </p>
+      
+      <h4>Compiler</h4>
+      <p> 
+            Radial++ is supposed to be fully compliant with the C++ standard. 
+            So we hope to be portable to any operating system.
+            Therefore, it can be compiled by GNU GCC (>=3.0; tested with version 3.4, 4.4). 
+            No tests were conducted with proprietary compilers under Unix, but the 
+            compliance with the C++ standard should ensure portability.  Please tell 
+            me if you have any problem running the test problems.
+      </p>      
+      
+         <h4>Installation</h4>
+         <p>
+             The library called Radial++ is ready to run "out the box", it is not neccesary
+             to have a previous library installed in your machine. All necessary files
+             are contained in Radial++.
+         </p>
+         <p> 
+            To compile the examples only modify the file:
+         </p>
+         <p>
+             examples/Makefile.in 
+          </p>
+          <p>
+            in particular the "tag" <RBF> which corresponds to the path where the library 
+             was unzipped.
+           
+             !!This is the only modification that you need to do to run all the examples.
+
+
+             In addition, optionally, in the file examples/Makefile.in you can modify the
+             compiler selected (CXX==?) and the flags in the compilation (CXXFLAGS=?)
+         </p>    
+      
+           <h4>Dependences</h4>
+          <p>
+            Radial++ uses the library called <a href="http://seldon.sourceforge.net/">Seldon</a>
+            to perform matrix and vector operations,
+            Seldon is included, so, you do not need to download Seldon.  It is convenient to
+            say that the best performance is obtained with the interface to BLAS and LAPACK,
+            see Seldon. Radial++ can work without the interface to BLAS and LAPACK. In 
+            particular, all the provided examples run without any external pre-installed 
+            library.
+          </p>
+
+	</div>
+
+
+
+
+
+	<div id="footer">
+		<p>&copy; 2009 J. Antonio Mu&ntilde;oz-G&oacute;mez</p>
+	</div>
+
+</div>
+</body>
+</html>

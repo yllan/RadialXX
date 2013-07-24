@@ -1,0 +1,17 @@
+RBF info: 
+ name           : TPS
+ beta factor    : 4
+ degree pol     : 3
+ min degree pol : 3
+Pol info: 
+ data dimension : 3
+ order          : 3
+ base elements  : 10
+condition number = 1.578964e+05
+
+Testing 3-d interpolation
+ f(x,y,z) = sin(x)*exp(-y) + cos(y)*exp(-x) * sin(z)*exp(-x*y)
+we build the interpolation with n-centers = 125
+determine the error in m centers = 1000
+e_max = 0.00556123
+

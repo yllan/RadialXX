@@ -1,0 +1,17 @@
+RBF info: 
+ name           : MQ
+ beta factor    : 1
+ degree pol     : 1
+ min degree pol : 1
+Pol info: 
+ data dimension : 2
+ order          : 1
+ base elements  : 1
+condition number = 2.021653e+05
+
+Testing 2-d interpolation
+ f(x,y) = sin(x)*exp(-y) + cos(y)*exp(-x)
+we build the interpolation with n-centers = 100
+determine the error in m centers = 40000
+e_max = 0.0508588
+

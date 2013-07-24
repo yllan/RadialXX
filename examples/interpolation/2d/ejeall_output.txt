@@ -1,0 +1,90 @@
+RBF info: 
+ name           : TPS
+ beta factor    : 2
+ degree pol     : 2
+ min degree pol : 2
+Pol info: 
+ data dimension : 2
+ order          : 2
+ base elements  : 3
+condition number = 3.056041e+06
+
+Nnew = 400
+Nnew = 1600
+e_max =  1.544584e-02
+----------------------------------------------------------------
+RBF info: 
+ name           : POT
+ beta factor    : 1
+ degree pol     : 1
+ min degree pol : 1
+Pol info: 
+ data dimension : 2
+ order          : 1
+ base elements  : 1
+condition number = 1.282691e+04
+
+Nnew = 400
+Nnew = 1600
+e_max =  2.125245e-02
+----------------------------------------------------------------
+RBF info: 
+ name           : IMQ
+ beta factor    : 1
+ degree pol     : 0
+ min degree pol : 0
+Pol info: 
+ data dimension : 2
+ order          : 0
+ base elements  : 0
+condition number = 1.038042e+07
+
+Nnew = 400
+Nnew = 1600
+e_max =  9.620341e-03
+----------------------------------------------------------------
+RBF info: 
+ name           : MQ
+ beta factor    : 1
+ degree pol     : 1
+ min degree pol : 1
+Pol info: 
+ data dimension : 2
+ order          : 1
+ base elements  : 1
+condition number = 1.289037e+09
+
+Nnew = 400
+Nnew = 1600
+e_max =  4.344292e-03
+----------------------------------------------------------------
+RBF info: 
+ name           : GAU
+ beta factor    : 0
+ degree pol     : 0
+ min degree pol : 0
+Pol info: 
+ data dimension : 2
+ order          : 0
+ base elements  : 0
+condition number = 8.632773e+16
+
+Nnew = 400
+Nnew = 1600
+e_max =  1.122515e-03
+----------------------------------------------------------------
+RBF info: 
+ name           : MQM
+ beta factor    : 1
+ degree pol     : 1
+ min degree pol : 1
+Pol info: 
+ data dimension : 2
+ order          : 1
+ base elements  : 1
+condition number = 1.289037e+09
+
+Nnew = 400
+Nnew = 1600
+e_max =  4.344292e-03
+----------------------------------------------------------------

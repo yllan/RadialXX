@@ -1,0 +1,28 @@
+/** \file guide.dox
+    \brief The main entry for the user's guide.
+*/
+
+/**
+\mainpage Radial++
+
+Radial++ is a C++ library for the numerical solution of partial differential 
+equations (no weak solutions) and the interpolation of scattered data by Radial 
+Basis Functions (RBFs).
+
+Radial++ works with generalized RBFs, like thin-plate splines, power splines, 
+Gaussian, multiquadrics and inverse multiquadrics. This means that you can 
+configurate the RBF to work with any degree of the associated polynomial to the 
+RBF and also, you can choose the free exponent in the generalized RBF.
+
+In particular, we can interpolate scattered data in any dimension (explicit surface), 
+and also, the library provide several examples for numerical solution of partial 
+differential equations by the unsymmetric collocation method. 
+
+Radial++ is part of the project Radial Basis Functions Methods for the Numerical
+Solution of Partial Differential Equations coordinated by professor Pedro Gonzalez-Casanova, 
+see <b><a href="http://www.netlib.org/blas/">pderbf</a></b>
+This work was proposed by Gonzalez-Casanova, and he provides the theoretical 
+background. This work is partially based on the ideas and previous works called RBF++ and 
+TUNA:RBF developed by Daniel Cervantes and Luis M. de la Cruz respectively. 
+
+*/
