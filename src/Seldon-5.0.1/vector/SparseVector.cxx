@@ -627,7 +627,7 @@ namespace Seldon
   */
   template <class T, class Allocator> inline
   void Vector<T, VectSparse, Allocator>::
-  AddInteractionRow(int n, int* index, T* value, bool already_sorted = false)
+  AddInteractionRow(int n, int* index, T* value, bool already_sorted)
   {
     Vector<int> ind;
     Vector<T, VectFull, Allocator> val;
@@ -654,7 +654,7 @@ namespace Seldon
   void Vector<T, VectSparse, Allocator>::
   AddInteractionRow(int n, Vector<int> index,
 		    Vector<T, VectFull, Allocator0> value,
-		    bool already_sorted = false)
+		    bool already_sorted)
   {
     if (!already_sorted)
       // Sorts the values to be added according to their indices.

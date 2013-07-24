@@ -91,10 +91,10 @@ namespace Seldon
     template<class T0>
     void RemoveSmallEntry(const T0& epsilon);
     void AddInteraction(int i, const T& val);
-    void AddInteractionRow(int, int*, T*, bool);
+    void AddInteractionRow(int, int*, T*, bool already_sorted = false);
     template<class Allocator0>
     void AddInteractionRow(int nb, Vector<int> col,
-			   Vector<T, VectFull, Allocator0> val, bool);
+			   Vector<T, VectFull, Allocator0> val, bool already_sorted = false);
     
     // Input/output functions.
     void Write(string FileName) const;

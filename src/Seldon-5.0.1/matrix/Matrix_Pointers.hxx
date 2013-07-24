@@ -99,9 +99,9 @@ namespace Seldon
     void Print(int l) const;
 
     // Input/output functions.
-    void Write(string FileName, bool with_size) const;
+    void Write(string FileName, bool with_size = true) const;
 #ifndef SWIG
-    void Write(ostream& FileStream, bool with_size) const;
+    void Write(ostream& FileStream, bool with_size = true) const;
 #endif
     void WriteText(string FileName) const;
 #ifndef SWIG

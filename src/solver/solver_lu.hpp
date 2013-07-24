@@ -39,7 +39,7 @@ class LU
    public:
       LU(void);
       ~LU(void);
-   T          factorize(Matrix<T> &B, int op);
+   T          factorize(Matrix<T> &B, int op=0);
    Vector<T>  solve(Vector<T> &b);
    Vector<T>  solve(Matrix<T> &B, Vector<T>  &b);
    Vector<T>  gauss(Matrix<T> &B, Vector<T>  &b);
@@ -65,7 +65,7 @@ LU<T>::~LU(void)
 }   
 //----------------------------------------------------------
 template <typename T> 
-T LU<T>::factorize(Matrix<T>  &B, int op=0)
+T LU<T>::factorize(Matrix<T>  &B, int op)
 {
   T cond;
 

@@ -809,7 +809,7 @@ namespace Seldon
   */
   template <class T, class Prop, class Storage, class Allocator>
   void Matrix_Pointers<T, Prop, Storage, Allocator>
-  ::Write(string FileName, bool with_size = true) const
+  ::Write(string FileName, bool with_size) const
   {
     ofstream FileStream;
     FileStream.open(FileName.c_str());
@@ -839,7 +839,7 @@ namespace Seldon
   */
   template <class T, class Prop, class Storage, class Allocator>
   void Matrix_Pointers<T, Prop, Storage, Allocator>
-  ::Write(ostream& FileStream, bool with_size = true) const
+  ::Write(ostream& FileStream, bool with_size) const
   {
 
 #ifdef SELDON_CHECK_IO

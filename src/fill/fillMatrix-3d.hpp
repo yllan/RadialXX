@@ -197,7 +197,7 @@ if(dim_px>0)
     case   RBF_DY: pol.deriva("y",1);
                    break; 
                    
-    case   RBF_DY: pol.deriva("z",1);
+    case   RBF_DZ: pol.deriva("z",1);
                    break; 
         
     case   RBF_DXX: pol.deriva("x",2);
